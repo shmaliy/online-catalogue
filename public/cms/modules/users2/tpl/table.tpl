@@ -1,18 +1,18 @@
 	<div class="table_filter">
-		<div class="filter_left">Тип <select id="category" onchange="call('{#name#}', '_set_parent', this.value)">{#tree#}</select></div>
+		<div class="filter_left">РўРёРї <select id="category" onchange="call('{#name#}', '_set_parent', this.value)">{#tree#}</select></div>
 	</div>
 	<table class="ctable" cellspacing="1">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>&nbsp;</th>
-				<th class="title">Имя / Логин</th>
-				<th>На сайте</th>
-				<th>Разрешен</th>
-				<th>Группа</th>
-				<th>Электронная почта</th>
-				<th>Дата регистрации</th>
-				<th>Последний визит</th>
+				<th class="title">РРјСЏ / Р›РѕРіРёРЅ</th>
+				<th>РќР° СЃР°Р№С‚Рµ</th>
+				<th>Р Р°Р·СЂРµС€РµРЅ</th>
+				<th>Р“СЂСѓРїРїР°</th>
+				<th>Р­Р»РµРєС‚СЂРѕРЅРЅР°СЏ РїРѕС‡С‚Р°</th>
+				<th>Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё</th>
+				<th>РџРѕСЃР»РµРґРЅРёР№ РІРёР·РёС‚</th>
 				{#adv_fields#}
 			</tr>
 		</thead>

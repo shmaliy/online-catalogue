@@ -1,7 +1,7 @@
 <div class="popup" id="popup">
     {#out#}
 	<div class="buttons">
-		<input type="button" value="Äà" onclick="sethiddenparam('{#name#}','{#param_name#}');">
-		<input type="button" value="Íåò" onclick="modal.hide();">
+		<input type="button" value="Ğ”Ğ°" onclick="sethiddenparam('{#name#}','{#param_name#}');">
+		<input type="button" value="ĞĞµÑ‚" onclick="modal.hide();">
 	</div>
 </div>

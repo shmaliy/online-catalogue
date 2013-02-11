@@ -1,16 +1,16 @@
 <div class="list">
 	<div class="table_filter">
-		<div class="filter_left">Категория <select id="category" onchange="call('{#name#}', '_setf', this.value)">{#tree#}</select></div>
+		<div class="filter_left">РљР°С‚РµРіРѕСЂРёСЏ <select id="category" onchange="call('{#name#}', '_setf', this.value)">{#tree#}</select></div>
 	</div>
 	<table class="ctable" cellspacing="1">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>&nbsp;</th>
-				<th class="title">Заголовок</th>
-				<th>Категория</th>
-				<th>Опубликовано</th>
-				<th>Порядок</th>
+				<th class="title">Р—Р°РіРѕР»РѕРІРѕРє</th>
+				<th>РљР°С‚РµРіРѕСЂРёСЏ</th>
+				<th>РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ</th>
+				<th>РџРѕСЂСЏРґРѕРє</th>
 				<th><img src="{#basedir#}/images/adm/filesave.png" onclick="call('{#name#}', '_reorder', ['total', getorder('ctable_contents')])" style="cursor:pointer;" /></th>
 				{#adv_fields#}
 			</tr>

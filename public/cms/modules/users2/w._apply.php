@@ -5,10 +5,10 @@
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name."/".mysql_insert_id());
 			}else{
-				$return[] = array('call', 'message', "Информация сохранена");
+				$return[] = array('call', 'message', "РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°");
 			}
 		}
 		return $return;

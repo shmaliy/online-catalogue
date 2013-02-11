@@ -38,7 +38,7 @@ select, input { font-size:11px; }
 #info_text { border:1px solid #dda; display:block; background:#ffc; padding:5px; display:block; border-top:0 none; z-index:1001; color:#333; font-family:Arial, Helvetica, sans-serif; font-size:14px; }
 /* ---/MAIN LAYOUT--- */
 
-/*@import url("{#module#}.css.php"); проверить возможность использования */
+/*@import url("{#module#}.css.php"); РїСЂРѕРІРµСЂРёС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ */
 
 /* ---CONFIRM LIST--- */
 .confirm_list { padding:10px; font-size:12px; }

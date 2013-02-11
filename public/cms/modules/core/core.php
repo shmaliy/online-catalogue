@@ -37,13 +37,13 @@ class core extends core_fb
 	
 	function page(){
 		if (!@fopen('db.php', 'r')){
-			$p[] = 'width=500&height=365&title=Установка системы&close=false';
+			$p[] = 'width=500&height=365&title=РЈСЃС‚Р°РЅРѕРІРєР° СЃРёСЃС‚РµРјС‹&close=false';
 			$p[] = $this->tpl->assign(TPLDIR.'inst.tpl','{#basedir#}',BASEDIR);
 			return array(array('call', 'modal.show', $p));
 		}else{
 			$users = new users2();
 			if ($_SESSION['cms']['authorized'] != 1 and @fopen('db.php', 'r') or $users->get_logged($_COOKIE['cms_data']['user_id'])==false){
-				$p[] = 'width=400&height=215&title=Авторизация&close=false';
+				$p[] = 'width=400&height=215&title=РђРІС‚РѕСЂРёР·Р°С†РёСЏ&close=false';
 				$p[] = $this->tpl->assign(TPLDIR.'auth.tpl','{#basedir#}',BASEDIR);
 				return array(array('call', 'modal.show', $p));
 			}else{return array(array('sleep', 1));}
@@ -51,7 +51,7 @@ class core extends core_fb
 	}
 	
 	function calendar($reffield){
-		$p[] = 'width=400&height=215&title=Выбор даты&close=true';
+		$p[] = 'width=400&height=215&title=Р’С‹Р±РѕСЂ РґР°С‚С‹&close=true';
 		$p[] = $this->tpl->assign(TPLDIR.'calendar.tpl');
 		$return[] = array('call', 'modal.show', $p);
 		$return[] = array('sleep', 10);
@@ -68,8 +68,8 @@ class core extends core_fb
 	}
 	
 	function get_top_menu(){
-		$topmenu[] = array('text' => 'Главная', 'url' => BASEDIR, 'icon16' => 'icon-16-cpanel', 'level' => 30, 'order' => 0, 'childs' => '');
-		$topmenu[] = array('name' => 'media', 'text' => 'Медиа менеджер', 'url' => 'javascript:tinyBrowserPopUp(\'file\',\'null\'); void(0);', 'order' => 1, 'icon16' => 'icon-16-cpanel', 'level' => 30, 'childs' => '');
+		$topmenu[] = array('text' => 'Р“Р»Р°РІРЅР°СЏ', 'url' => BASEDIR, 'icon16' => 'icon-16-cpanel', 'level' => 30, 'childs' => '');
+		$topmenu[] = array('name' => 'media', 'text' => 'РњРµРґРёР° РјРµРЅРµРґР¶РµСЂ', 'url' => 'javascript:tinyBrowserPopUp(\'file\',\'null\'); void(0);', 'icon16' => 'icon-16-cpanel', 'level' => 30, 'childs' => '');
 		if ($modules = $this->_mod_get_installed()){
 			foreach ($modules as $module){
 				$m_info = $this->_mod_get_info($module);
@@ -137,7 +137,7 @@ class core extends core_fb
 				uasort($topmenu, array($this, '_cmp'));
 			}
 		}
-		$topmenu[] =  array('text' => 'Выход из системы', 'url' => "javascript:call('users2','_logout','".$_SESSION['cms']['user_id']."');", 'icon16' => 'icon-16-logout', 'level' => 30, 'childs' => '');
+		$topmenu[] =  array('text' => 'Р’С‹С…РѕРґ РёР· СЃРёСЃС‚РµРјС‹', 'url' => "javascript:call('users2','_logout','".$_SESSION['cms']['user_id']."');", 'icon16' => 'icon-16-logout', 'level' => 30, 'childs' => '');
 
 		return $topmenu;
 	}
@@ -261,17 +261,17 @@ class core extends core_fb
 		$t = ($p == 0) ? count($mod->get_list()) : count($mod->get_list($p));
 		foreach($rows as $row){
 			$n = ($row=='all') ? '0' : $row;
-			$tx = ($row=='all') ? 'Все' : $row;
+			$tx = ($row=='all') ? 'Р’СЃРµ' : $row;
 			$rn .= ($row=='all'&&$r=='0'||$row==$r)?'<option value="'.$n.'" selected="selected">'.$tx.'</option>':'<option value="'.$n.'">'.$tx.'</option>';
 		}
 		$pages = ($r != 0) ? ($t/$r > floor($t/$r)) ? floor($t/$r)+1 : $t/$r : 1;
 		for($i=1; $i<=$pages; $i++){
 			$pgs .= ($i == $c) ? '<a class="page_c">'.$i.'</a>' : '<a href="javascript:call(\''.$m.'\', \'_setp\', '.$i.');" class="page_n">'.$i.'</a>';
 		}
-		$first = ($c==1) ? '<a class="page_l">Начало</a>' : '<a href="javascript:call(\''.$m.'\', \'_setp\', 1);" class="page_l">Начало</a>';
-		$last = ($c==$pages) ? '<a class="page_r">Конец</a>' : '<a href="javascript:call(\''.$m.'\', \'_setp\', '.$pages.');" class="page_r">Конец</a>';
+		$first = ($c==1) ? '<a class="page_l">РќР°С‡Р°Р»Рѕ</a>' : '<a href="javascript:call(\''.$m.'\', \'_setp\', 1);" class="page_l">РќР°С‡Р°Р»Рѕ</a>';
+		$last = ($c==$pages) ? '<a class="page_r">РљРѕРЅРµС†</a>' : '<a href="javascript:call(\''.$m.'\', \'_setp\', '.$pages.');" class="page_r">РљРѕРЅРµС†</a>';
 		$rows = '<select id="rnum" onChange="call(\''.$m.'\', \'_setr\', this.value);">'.$rn.'</select>';
-		return 'Количество строк:'.$rows.$first.$pgs.$last;
+		return 'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє:'.$rows.$first.$pgs.$last;
 	}
 	
 	function installation($data){
@@ -279,7 +279,7 @@ class core extends core_fb
 		$return = array();
 		$connect = @mysql_connect($data['inst']['dbhost'],$data['inst']['dbuser'],$data['inst']['dbpassword']);
 		if (!$connect){
-			$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#FF0000">Невозможно подключится к серверу MySQL</font>');
+			$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#FF0000">РќРµРІРѕР·РјРѕР¶РЅРѕ РїРѕРґРєР»СЋС‡РёС‚СЃСЏ Рє СЃРµСЂРІРµСЂСѓ MySQL</font>');
 		}else{
 			$file = fopen("db.php","w+");
 			$str  = "<?php \n";
@@ -292,11 +292,11 @@ class core extends core_fb
 		    fputs ($file, $str);
 		  	fclose ($file);
 			
-			$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#0066FF">Конфигурация сохранена</font>');
+			$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#0066FF">РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°</font>');
 			$return[] = array('sleep', '10');
 			
 		  	if (!@mysql_select_db($data['inst']['dbname'])){
-				$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#FF0000">БД нет подключения</font>');
+				$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#FF0000">Р‘Р” РЅРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёСЏ</font>');
 			}else{
 				$users = new users2();
 				$users->tbl = $data['inst']['dbprefix'].'users';
@@ -309,11 +309,11 @@ class core extends core_fb
 				$sql['email'] = $data['inst']['email'];
 				$sql['register_date'] = date('Y-m-d H:i:s');
 				if ($users->insert($sql)){				        
-					$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#0066FF">Установка прошла успешно</font>');
+					$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#0066FF">РЈСЃС‚Р°РЅРѕРІРєР° РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ</font>');
 					$return[] = array('sleep', '10');
 					$return[] = array('redirect', BASEDIR."/");
 				}else{
-					$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#FF0000">Ошибка инициализации</font>');
+					$return[] = array('assign', 'inst_stat', 'innerHTML', '<font color="#FF0000">РћС€РёР±РєР° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё</font>');
 				}
 			}
 		}
@@ -352,7 +352,7 @@ class core extends core_fb
 			return $this->page();
 		}else{
 			$_SESSION['cms']['fb']['return'] = $field;
-			$p[] = 'width=600&height=405&title=Менеджер файлов&close=true';
+			$p[] = 'width=600&height=405&title=РњРµРЅРµРґР¶РµСЂ С„Р°Р№Р»РѕРІ&close=true';
 			$p[] = $this->fb_build();
 			$return[] = array('call', 'modal.show', $p);
 			$return[] = array('sleep', 10);
@@ -370,11 +370,11 @@ class core extends core_fb
 		$user = $users->get_authorized("$login", "$password");
 		if ($user){
 			if ($user['usertype'] > 19){
-				return array(array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">Доступ запрещен</font>'));
+				return array(array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">Р”РѕСЃС‚СѓРї Р·Р°РїСЂРµС‰РµРЅ</font>'));
 			}
 			elseif ($user['block'] == '0'){
 	  			if (!$users->set_logged($user['id'])){
-	  				return array(array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">Ошибка установки статуса</font>'));
+	  				return array(array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">РћС€РёР±РєР° СѓСЃС‚Р°РЅРѕРІРєРё СЃС‚Р°С‚СѓСЃР°</font>'));
 	  			}else{
 					$_SESSION['cms']['authorized'] = 1;
 					$_SESSION['cms']['usertype'] = $user['usertype'];
@@ -383,8 +383,8 @@ class core extends core_fb
 					$d = getdate();
 		  			$users->update_e('lastvizit_date', $d['year'].'-'.$d['mon'].'-'.$d['mday'].' '.$d['hours'].':'.$d['minutes'].':'.$d['seconds'],$user['id']);
 	
-		  			$stat = ($GLOBALS['demo'] == true) ? '<br />ДЕМО РЕЖИМ' : '';
-		  			$stat = '<font color="#0066FF">Авторизация прошла успешно'.$stat.'</font>';
+		  			$stat = ($GLOBALS['demo'] == true) ? '<br />Р”Р•РњРћ Р Р•Р–РРњ' : '';
+		  			$stat = '<font color="#0066FF">РђРІС‚РѕСЂРёР·Р°С†РёСЏ РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ'.$stat.'</font>';
 		  			$return[] = array('assign', 'auth_stat', 'innerHTML', $stat);
 					$return[] = array('sleep', 10);
 					$return[] = array('call', 'modal.hide');
@@ -401,12 +401,12 @@ class core extends core_fb
 			elseif ($user['block'] == '1'){
 				$_SESSION['cms']['authorized'] = 0;
 				session_destroy();
-				$return[] = array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">Ваш акаунт заблокирован</font>');
+				$return[] = array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">Р’Р°С€ Р°РєР°СѓРЅС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ</font>');
 			}
 		}else{ 
 			$_SESSION['cms']['authorized'] = 0;
 			session_destroy();
-			$return[] = array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">Ошибка Авторизаци</font>');
+			$return[] = array('assign', 'auth_stat', 'innerHTML', '<font color="#FF0000">РћС€РёР±РєР° РђРІС‚РѕСЂРёР·Р°С†Рё</font>');
 		}
 		return $return;
 	}

@@ -5,11 +5,11 @@
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Ðàçëîãèíèòü', "call('$this->name', '_logout', ['all', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Ðàçáëîêèðîâàòü', "call('$this->name', '_block', ['false', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Çàáëîêèðîâàòü', "call('$this->name', '_block', ['true', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-delete.png', 'Óäàëèòü', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-adduser.png', 'Ñîçäàòü', "call('$this->name', '_new');", 12)
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Ð Ð°Ð·Ð»Ð¾Ð³Ð¸Ð½Ð¸Ñ‚ÑŒ', "call('$this->name', '_logout', ['all', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Ð Ð°Ð·Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', "call('$this->name', '_block', ['false', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Ð—Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', "call('$this->name', '_block', ['true', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-delete.png', 'Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', "call('$this->name', '_del', 'confirmed');", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-adduser.png', 'Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ', "call('$this->name', '_new');", 12)
 				)
 			);
 		}
@@ -18,9 +18,9 @@
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ñîõðàíèòü', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Ïðèìåíèòü', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Îòìåíà', "call('$this->name', '_cancel', 'new');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'ÐžÑ‚Ð¼ÐµÐ½Ð°', "call('$this->name', '_cancel', 'new');", 13)
 				)
 			);
 		}
@@ -29,10 +29,10 @@
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ñîõðàíèòü', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Ïðèìåíèòü', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Áëîêèðîâàòü', "call('$this->name', '_lock');", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Îòìåíà', "call('$this->name', '_cancel', '$id');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Ð‘Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', "call('$this->name', '_lock');", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'ÐžÑ‚Ð¼ÐµÐ½Ð°', "call('$this->name', '_cancel', '$id');", 13)
 				)
 			);
 		}

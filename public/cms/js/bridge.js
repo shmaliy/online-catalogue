@@ -79,10 +79,6 @@ function message(mes){
 function message_hide(){ fade._out('info_float', 1, 0, 'message_clear'); }
 function message_clear(){ text = document.getElementById('info_text'); text.innerHTML = ''; }
 
-function auto_send(data){
-	xajax_exe('subscribe', '_auto', data);
-}
-
 function call(module, method, data){
 	if (data){ xajax_exe(module, method, data); }
 	else { xajax_exe(module, method); }
@@ -251,7 +247,7 @@ var image_editor = {
 			option.setAttribute("value", element[1]);
 			folders.appendChild(option);
 		}	
-	}
+	},
 };
 
 var core = {
@@ -261,7 +257,7 @@ var core = {
 	_fb_setfield:function(data){
 		var e;
 		if (find_substr(data[0], ';')){
-			e = data[0].split(';');
+			e = data[0].split(';')
 			for (var i=0; i<e.length; i++){
 				if (find_substr(e[i], '.')){
 					var f = e[i].split('.');

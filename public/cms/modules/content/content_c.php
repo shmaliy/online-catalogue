@@ -205,7 +205,7 @@ class content
 			foreach ($list as $i){
 				foreach ($i as $f => $v){ $r["{#$f#}"] = $v; }
 				$r['{#title#}'] = ($i['title_alias'] != '') ? $i['title'].' ( '.$i['title_alias'].' )' : $i['title'];
-				$r['{#parent_id#}'] = ($i['parent_id'] != 0) ? $categories->get($i['parent_id'], 'title') : '- НЕТ -';
+				$r['{#parent_id#}'] = ($i['parent_id'] != 0) ? $categories->get($i['parent_id'], 'title') : '- РќР•Рў -';
 				$r['{#published#}'] = ($i['published'] == 1) ? '<img src="'.BASEDIR.'/images/adm/tick.png" />' : '<img src="'.BASEDIR.'/images/adm/publish_x.png" />';
 				if ($i['checked_out'] == 0){
 					$r['{#checked_out#}'] = '<input name="'.$i['id'].'" type="checkbox"></td>';
@@ -229,7 +229,7 @@ class content
 				$o['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_row.tpl", $r);
 				$c++;
 			}
-		}else { $o['{#items#}'] = '<tr><td colspan="30">Пусто</td></tr>'; }
+		}else { $o['{#items#}'] = '<tr><td colspan="30">РџСѓСЃС‚Рѕ</td></tr>'; }
 		$o['{#basedir#}'] = BASEDIR;
 		$o['{#name#}'] = $this->name;
 		$o['{#navigator#}'] = $this->_navigator();
@@ -245,12 +245,12 @@ class content
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Показать', "call('$this->name', '_publish', ['true', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Скрыть', "call('$this->name', '_publish', ['false', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-move.png', 'Переместить', "call('$this->name', '_move', ['confirm', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-copy.png', 'Копировать', "call('$this->name', '_copy', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-trash.png', 'Удалить', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-new.png', 'Создать', "call('$this->name', '_new');", 12)
+					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'РџРѕРєР°Р·Р°С‚СЊ', "call('$this->name', '_publish', ['true', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'РЎРєСЂС‹С‚СЊ', "call('$this->name', '_publish', ['false', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-move.png', 'РџРµСЂРµРјРµСЃС‚РёС‚СЊ', "call('$this->name', '_move', ['confirm', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-copy.png', 'РљРѕРїРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_copy', ['confirm', getcheckbox('ctable_contents')]);", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-trash.png', 'РЈРґР°Р»РёС‚СЊ', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-new.png', 'РЎРѕР·РґР°С‚СЊ', "call('$this->name', '_new');", 12)
 				)
 			);
 		}
@@ -259,9 +259,9 @@ class content
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Сохранить', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Применить', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Отмена', "call('$this->name', '_cancel', 'new');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'РЎРѕС…СЂР°РЅРёС‚СЊ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'РџСЂРёРјРµРЅРёС‚СЊ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'РћС‚РјРµРЅР°', "call('$this->name', '_cancel', 'new');", 13)
 				)
 			);
 		}
@@ -270,10 +270,10 @@ class content
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Сохранить', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Применить', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Блокировать', "call('$this->name', '_lock');", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Отмена', "call('$this->name', '_cancel', '$id');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'РЎРѕС…СЂР°РЅРёС‚СЊ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'РџСЂРёРјРµРЅРёС‚СЊ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Р‘Р»РѕРєРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_lock');", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'РћС‚РјРµРЅР°', "call('$this->name', '_cancel', '$id');", 13)
 				)
 			);
 		}
@@ -301,10 +301,10 @@ class content
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name."/".mysql_insert_id());
 			}else{
-				$return[] = array('call', 'message', "Информация сохранена");
+				$return[] = array('call', 'message', "РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°");
 			}
 		}
 		return $return;
@@ -332,7 +332,7 @@ class content
 	function _copy($data){
 		$categories = new categories();
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
 			else{
 				$errors = array();
 				foreach ($data[1] as $item){
@@ -341,18 +341,18 @@ class content
 					$elem['checked_out'] = '0';
 					$elem['checked_out_time'] = '0000-00-00 00:00:00';
 					$elem['ordering'] = 1;
-					if (!$this->insert($elem)){ $errors[] = $item.' (ошибка копирования)'; }
+					if (!$this->insert($elem)){ $errors[] = $item.' (РѕС€РёР±РєР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ)'; }
 				}
 				if (count($errors)==0){
 					$return[] = array('assign', $this->name.'_table', 'innerHTML', $this->table());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) скопированы');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) СЃРєРѕРїРёСЂРѕРІР°РЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -360,7 +360,7 @@ class content
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Копирование&close=true';
+				$p[] = 'width=500&height=265&title=РљРѕРїРёСЂРѕРІР°РЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$out['{#tree#}'] = $categories->tree(0, 0, $_SESSION['cms']['mod'][$this->name]['parent']);
@@ -374,14 +374,14 @@ class content
 	function _delete($data){
 		$categories = new categories();
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
 			else{
 				$errors = array();
 				$content = (class_exists('content', false)) ? new content() : false;
 				foreach ($data[1] as $item){
 					$el = $this->get($item);
-					if ($el['checked_out'] != 0){ $errors[] = $item.' (элемент заблокирован)'; }
-					elseif (!$this->delete($item)){ $errors[] = $item.' (ошибка удаления)'; }
+					if ($el['checked_out'] != 0){ $errors[] = $item.' (СЌР»РµРјРµРЅС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ)'; }
+					elseif (!$this->delete($item)){ $errors[] = $item.' (РѕС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ)'; }
 				}
 				if (count($errors)==0){
 					$parents = $categories->get_list();
@@ -390,12 +390,12 @@ class content
 					$return[] = array('assign', $this->name.'_table', 'innerHTML', $this->table());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) удалены');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) СѓРґР°Р»РµРЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -403,7 +403,7 @@ class content
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Удаление&close=true';
+				$p[] = 'width=500&height=265&title=РЈРґР°Р»РµРЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$p[] = $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_del.tpl", $out);
@@ -432,12 +432,12 @@ class content
 	function _move($data){
 		$categories = new categories();
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
 			else{
 				$errors = array();
 				foreach ($data[1] as $item){
 					$el = $this->get($item);
-					if ($el['checked_out'] != 0){ $errors[] = $item.' (элемент заблокирован)'; }
+					if ($el['checked_out'] != 0){ $errors[] = $item.' (СЌР»РµРјРµРЅС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ)'; }
 					else {
 						$this->update_e('parent_id', $data[0], $item);
 						$this->update_e('ordering', 0, $item);
@@ -450,12 +450,12 @@ class content
 					$return[] = array('assign', $this->name.'_table', 'innerHTML', $this->table());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) перемещены');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) РїРµСЂРµРјРµС‰РµРЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -463,7 +463,7 @@ class content
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Перемещение&close=true';
+				$p[] = 'width=500&height=265&title=РџРµСЂРµРјРµС‰РµРЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$out['{#tree#}'] = $categories->tree(0, 0, $_SESSION['cms']['mod'][$this->name]['parent']);
@@ -482,17 +482,17 @@ class content
 		$t = count($this->get_list($p));
 		foreach($rows as $row){
 			$n = ($row=='all') ? '0' : $row;
-			$tx = ($row=='all') ? 'Все' : $row;
+			$tx = ($row=='all') ? 'Р’СЃРµ' : $row;
 			$rn .= ($row=='all'&&$r=='0'||$row==$r)?'<option value="'.$n.'" selected="selected">'.$tx.'</option>':'<option value="'.$n.'">'.$tx.'</option>';
 		}
 		$pages = ($r != 0) ? ($t/$r > floor($t/$r)) ? floor($t/$r)+1 : $t/$r : 1;
 		for($i=1; $i<=$pages; $i++){
 			$pgs .= ($i == $c) ? '<a class="page_c">'.$i.'</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$i.');" class="page_n">'.$i.'</a>';
 		}
-		$first = ($c==1) ? '<a class="page_l">Начало</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', 1);" class="page_l">Начало</a>';
-		$last = ($c==$pages) ? '<a class="page_r">Конец</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$pages.');" class="page_r">Конец</a>';
+		$first = ($c==1) ? '<a class="page_l">РќР°С‡Р°Р»Рѕ</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', 1);" class="page_l">РќР°С‡Р°Р»Рѕ</a>';
+		$last = ($c==$pages) ? '<a class="page_r">РљРѕРЅРµС†</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$pages.');" class="page_r">РљРѕРЅРµС†</a>';
 		$rows = '<select id="rnum" onChange="call(\''.$this->name.'\', \'_set_rnum\', this.value);">'.$rn.'</select>';
-		return 'Количество строк:'.$rows.$first.$pgs.$last;
+		return 'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє:'.$rows.$first.$pgs.$last;
 	}
 
 
@@ -511,11 +511,11 @@ class content
 
 	function _publish($id){
 		if (is_array($id)){
-			if ($id[1] == 'null'){return array(array('call', 'message', "Не выбран не один элемент"));}
+			if ($id[1] == 'null'){return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚"));}
 			else{
 				$errors = array();
 				$to = ($id[0] == 'true') ? '1' : '0';
-				$mes = ($id[0] == 'false') ? "Элементы заблокированы" : "Элементы разблокированы";
+				$mes = ($id[0] == 'false') ? "Р­Р»РµРјРµРЅС‚С‹ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅС‹" : "Р­Р»РµРјРµРЅС‚С‹ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅС‹";
 				foreach ($id[1] as $ids){
 					if (!$this->update_e('published', $to, $ids)){$errors[] = $ids;}
 				}
@@ -524,7 +524,7 @@ class content
 					$return[] = array('call', 'message', $mes);
 					return $return;
 				}
-				else return array(array('call', 'message', "Ошибка обработки ID: ".implode(', ', $errors)));
+				else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID: ".implode(', ', $errors)));
 			}
 		}else{
 			$published = $this->get($id, 'published');
@@ -583,11 +583,11 @@ class content
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Элемент добавлен';
+				$_SESSION['cms']['message'] = 'Р­Р»РµРјРµРЅС‚ РґРѕР±Р°РІР»РµРЅ';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}elseif ($data[$this->name]['db_id'] != 'new'){
 				$this->_check_out($data[$this->name]['db_id'], 'false');
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}
 		}
@@ -615,13 +615,13 @@ class content
 		$sql = ($params) ? $params->adv_save($data[$this->name], $sql, $this->name) : $sql;
 		
 		$error = array();
-		if ($sql['title'] == ''){ $error[] = 'Поле заголовок не может быть пустым'; }
+		if ($sql['title'] == ''){ $error[] = 'РџРѕР»Рµ Р·Р°РіРѕР»РѕРІРѕРє РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј'; }
 		
 		if (count($error) == 0){
 			if ($id == "new"){
 				$sql['ordering'] = 1;
 				if ($this->insert($sql)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка добавления"); }
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ"); }
 			}else{
 				settype($id,"integer");
 				$element = $this->get($id);
@@ -635,7 +635,7 @@ class content
 					$this->_increment_order($sql['parent_id']);
 				}
 				if ($this->update($sql, $id)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка сохранения"); }
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ"); }
 			}
 		}else{
 			$return[] = array('call', 'message', implode('<br />', $error));

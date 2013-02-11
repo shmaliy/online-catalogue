@@ -28,6 +28,6 @@
 			}
 			return $out;
 		}
-		else return '<tr><td colspan="9">Ïóñòî</td></tr>';		
+		else return '<tr><td colspan="9">ĞŸÑƒÑÑ‚Ğ¾</td></tr>';		
 	}
 ?>

@@ -3,9 +3,9 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th class="title">Заголовок</th>
-				<th>Файл</th>
-				<th>Альбом</th>
+				<th class="title">Р—Р°РіРѕР»РѕРІРѕРє</th>
+				<th>Р¤Р°Р№Р»</th>
+				<th>РђР»СЊР±РѕРј</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -13,7 +13,7 @@
 		</tbody>
 	</table>
 	<div class="buttons">
-		<input type="button" value="Да" onclick="call('{#name#}', '_delete', ['del', getcheckbox('ctable_contents')])">
-		<input type="button" value="Нет" onclick="modal.hide();">
+		<input type="button" value="Р”Р°" onclick="call('{#name#}', '_delete', ['del', getcheckbox('ctable_contents')])">
+		<input type="button" value="РќРµС‚" onclick="modal.hide();">
 	</div>
 </div>

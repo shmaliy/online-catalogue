@@ -8,12 +8,12 @@ class menu_gen extends menu_db
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Ïîêàçàòü', "call('$this->name', '_publish', ['true', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Ñêğûòü', "call('$this->name', '_publish', ['false', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-move.png', 'Ïåğåìåñòèòü', "call('$this->name', '_move', ['confirm', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-copy.png', 'Êîïèğîâàòü', "call('$this->name', '_copy', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-trash.png', 'Óäàëèòü', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-new.png', 'Ñîçäàòü', "call('$this->name', '_new');", 12)
+					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'ĞŸĞ¾ĞºĞ°Ğ·Ğ°Ñ‚ÑŒ', "call('$this->name', '_publish', ['true', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Ğ¡ĞºÑ€Ñ‹Ñ‚ÑŒ', "call('$this->name', '_publish', ['false', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-move.png', 'ĞŸĞµÑ€ĞµĞ¼ĞµÑÑ‚Ğ¸Ñ‚ÑŒ', "call('$this->name', '_move', ['confirm', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-copy.png', 'ĞšĞ¾Ğ¿Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ', "call('$this->name', '_copy', ['confirm', getcheckbox('ctable_contents')]);", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-trash.png', 'Ğ£Ğ´Ğ°Ğ»Ğ¸Ñ‚ÑŒ', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-new.png', 'Ğ¡Ğ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ', "call('$this->name', '_new');", 12)
 				)
 			);
 		}
@@ -22,9 +22,9 @@ class menu_gen extends menu_db
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ñîõğàíèòü', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Ïğèìåíèòü', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Îòìåíà', "call('$this->name', '_cancel', 'new');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½Ğ¸Ñ‚ÑŒ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'ĞŸÑ€Ğ¸Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'ĞÑ‚Ğ¼ĞµĞ½Ğ°', "call('$this->name', '_cancel', 'new');", 13)
 				)
 			);
 		}
@@ -33,10 +33,10 @@ class menu_gen extends menu_db
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ñîõğàíèòü', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Ïğèìåíèòü', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Áëîêèğîâàòü', "call('$this->name', '_lock');", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Îòìåíà', "call('$this->name', '_cancel', '$id');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½Ğ¸Ñ‚ÑŒ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'ĞŸÑ€Ğ¸Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Ğ‘Ğ»Ğ¾ĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ', "call('$this->name', '_lock');", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'ĞÑ‚Ğ¼ĞµĞ½Ğ°', "call('$this->name', '_cancel', '$id');", 13)
 				)
 			);
 		}
@@ -75,7 +75,7 @@ class menu_gen extends menu_db
 				$o['{#image#}'] = $list[$i]['image'];
 				$o['{#published#}'] = ($list[$i]['published'] == 1) ? '<img src="'.BASEDIR.'/images/adm/publish_g.png" />' : '<img src="'.BASEDIR.'/images/adm/publish_x.png" />';
 				$o['{#link#}'] = $list[$i]['link'];
-				$o['{#parent#}'] = ($list[$i]['parent_id'] != 0) ? $this->get($list[$i]['parent_id'], 'title') : '- Íåò -';
+				$o['{#parent#}'] = ($list[$i]['parent_id'] != 0) ? $this->get($list[$i]['parent_id'], 'title') : '- ĞĞµÑ‚ -';
 				
 				if ($list[$i]['checked_out'] == 0){
 					$o['{#checked_out#}'] = '<input name="'.$list[$i]['id'].'" type="checkbox"></td>';
@@ -99,7 +99,7 @@ class menu_gen extends menu_db
 			}
 			return $out;
 		}
-		else return '<tr><td colspan="30">Ïóñòî</td></tr>';		
+		else return '<tr><td colspan="30">ĞŸÑƒÑÑ‚Ğ¾</td></tr>';		
 	}
 	
 	function editor($id){
@@ -130,7 +130,7 @@ class menu_gen extends menu_db
 	}
 	
 	function tree($parent, $level, $selected){
-		$out .= ($level == 0) ? '<option value="0" class="tab_0">- ÍÅÒ -</option>' : '';
+		$out .= ($level == 0) ? '<option value="0" class="tab_0">- ĞĞ•Ğ¢ -</option>' : '';
 		$list = $this->get_list($parent);
 		if ($list){
 			for($i=0; $i<count($list); $i++){

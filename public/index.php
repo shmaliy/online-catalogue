@@ -1,54 +1,56 @@
 <?php
+error_reporting(0);
+//session_start();
 
-/* Êîðíåâîé êàòàëîã */
+/* ÐšÐ¾Ñ€Ð½ÐµÐ²Ð¾Ð¹ ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³ */
 if (!defined('ROOT_PATH')) {
 	define('ROOT_PATH', realpath(dirname(dirname(__FILE__))));
 }
 
-/* Êàòàëîã ïðèëîæåíèÿ */
+/* ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ */
 if (!defined('APPLICATION_PATH')) {
 	define('APPLICATION_PATH', ROOT_PATH . '/application');
 }
 
-/* Define ZEND library(s) */
+/* ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐº ZEND */
 if (!defined('LIBRARY_PATH')) {
-	
-	if (file_exists(realpath(ROOT_PATH . '/..') . '/ZEND')) {
-		$libraryPath[] = realpath(ROOT_PATH . '/..') . '/ZEND';
+	if (file_exists(realpath(ROOT_PATH . '/../..') . '/phpLibs')) {
+		define('LIBRARY_PATH', realpath(ROOT_PATH . '/../..' . '/phpLibs'));
+	} else {
+		define('LIBRARY_PATH', realpath(ROOT_PATH . '/library'));
 	}
-	
-	$libraryPath[] = ROOT_PATH . '/library';
-	define('LIBRARY_PATH', implode(PATH_SEPARATOR, $libraryPath));
-	unset($libraryPath);
 }
 
-/* Êàòàëîã ïóáëè÷íî äîñòóïíûõ ôàéëîâ */
+
+/* ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³ Ð¿ÑƒÐ±Ð»Ð¸Ñ‡Ð½Ð¾ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ñ„Ð°Ð¹Ð»Ð¾Ð² */
 if (!defined('PUBLIC_PATH')) {
 	define('PUBLIC_PATH', ROOT_PATH . '/public');
 }
 
-/* Óñòàíîâêà ñðåäû */
+/* Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° ÑÑ€ÐµÐ´Ñ‹ */
 if (!defined('APPLICATION_ENV')) {
     define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 }
 
-/* Óñòàíîâêà â include_path ïàïêè áèáëèîòåê */
-set_include_path(
-	implode(PATH_SEPARATOR, 
-		array(
-    		LIBRARY_PATH,
-    		get_include_path(),
-    	)
-    )
-);
-
-/* Ïîäêëþ÷åíèå ôàéëà íàñòðîåê */
+// ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐº
 require_once APPLICATION_PATH . '/configs/config.php';
 
-/* Ïîäêëþ÷åíèå Zend_Application */
+//Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð² include_path Ð¿Ð°Ð¿ÐºÐ¸ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐº
+set_include_path(implode(PATH_SEPARATOR, array(
+    LIBRARY_PATH,
+    get_include_path(), 
+    APPLICATION_PATH . '/../public/classes'
+)));
+
+
+include('my_helpers.php');
+include('renamer.php');
+
+
+/** ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Zend_Application */
 require_once 'Zend/Application.php';
 
-// Ñîçäàíèå îáüåêòà ïðèëîæåíèÿ è çàïóñê
+// Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾Ð±ÑŒÐµÐºÑ‚Ð° Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ Ð¸ Ð·Ð°Ð¿ÑƒÑÐº
 $application = new Zend_Application(
     APPLICATION_ENV,
     $config

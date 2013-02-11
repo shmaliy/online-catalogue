@@ -1,11 +1,11 @@
 <?php
 	function _publish($id){
 		if (is_array($id)){
-			if ($id[1] == 'null'){return array(array('call', 'message', "Íå âûáğàí íå îäèí ıëåìåíò"));}
+			if ($id[1] == 'null'){return array(array('call', 'message', "ĞĞµ Ğ²Ñ‹Ğ±Ñ€Ğ°Ğ½ Ğ½Ğµ Ğ¾Ğ´Ğ¸Ğ½ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚"));}
 			else{
 				$errors = array();
 				$to = ($id[0] == 'true') ? '1' : '0';
-				$mes = ($id[0] == 'false') ? "İëåìåíòû çàáëîêèğîâàíû" : "İëåìåíòû ğàçáëîêèğîâàíû";
+				$mes = ($id[0] == 'false') ? "Ğ­Ğ»ĞµĞ¼ĞµĞ½Ñ‚Ñ‹ Ğ·Ğ°Ğ±Ğ»Ğ¾ĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ñ‹" : "Ğ­Ğ»ĞµĞ¼ĞµĞ½Ñ‚Ñ‹ Ñ€Ğ°Ğ·Ğ±Ğ»Ğ¾ĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ñ‹";
 				foreach ($id[1] as $ids){
 					if (!$this->update_e('published', $to, $ids)){$errors[] = $ids;}
 				}
@@ -14,7 +14,7 @@
 					$return[] = array('call', 'message', $mes);
 					return $return;
 				}
-				else return array(array('call', 'message', "Îøèáêà îáğàáîòêè ID: ".implode(', ', $errors)));
+				else return array(array('call', 'message', "ĞÑˆĞ¸Ğ±ĞºĞ° Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ ID: ".implode(', ', $errors)));
 			}
 		}else{
 			$published = $this->get($id, 'published');

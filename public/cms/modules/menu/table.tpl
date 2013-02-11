@@ -1,17 +1,17 @@
 <div class="list">
 	<div class="table_filter">
-		<div class="filter_left">Меню <select id="category" onchange="call('{#name#}', '_setf', this.value)">{#tree#}</select></div>
+		<div class="filter_left">РњРµРЅСЋ <select id="category" onchange="call('{#name#}', '_setf', this.value)">{#tree#}</select></div>
 	</div>
 	<table class="ctable" cellspacing="1">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>&nbsp;</th>
-				<th class="title">Заголовок</th>
-				<th>Родитель</th>
-				<th>Ссылка</th>
-				<th>Опубликовано</th>
-				<th>Порядок</th>
+				<th class="title">Р—Р°РіРѕР»РѕРІРѕРє</th>
+				<th>Р РѕРґРёС‚РµР»СЊ</th>
+				<th>РЎСЃС‹Р»РєР°</th>
+				<th>РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ</th>
+				<th>РџРѕСЂСЏРґРѕРє</th>
 				<th><img src="{#basedir#}/images/adm/filesave.png" onclick="call('{#name#}', '_reorder', ['total', getorder('ctable_contents')])" style="cursor:pointer;" /></th>
 			</tr>
 		</thead>

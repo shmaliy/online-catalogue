@@ -17,14 +17,14 @@ if (!$_SESSION['cms']['fb']['path']){ $_SESSION['cms']['fb']['path'] = '../conte
 if (!$_SESSION['cms']['fb']['mode']){ $_SESSION['cms']['fb']['mode'] = 'filebrowser_l'; }
 if (!$_SESSION['cms']['fb']['return']){ $_SESSION['cms']['fb']['return'] = ''; }
 $usertypes = array(
-	0  => 'Все',
-	10 => 'Супер-пупер администратор',
-	11 => 'Администратор',
-	12 => 'Менеджер',
-	20 => 'Публикатор',
-	21 => 'Редактор',
-	22 => 'Автор',
-	23 => 'Зарегестрированый'
+	0  => 'Р’СЃРµ',
+	10 => 'РЎСѓРїРµСЂ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ',
+	11 => 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ',
+	12 => 'РњРµРЅРµРґР¶РµСЂ',
+	20 => 'РџСѓР±Р»РёРєР°С‚РѕСЂ',
+	21 => 'Р РµРґР°РєС‚РѕСЂ',
+	22 => 'РђРІС‚РѕСЂ',
+	23 => 'Р—Р°СЂРµРіРµСЃС‚СЂРёСЂРѕРІР°РЅС‹Р№'
 );
 
 $rownums = explode(',', '5,10,15,20,25,30,50,all');
@@ -35,24 +35,24 @@ $xajax = new xajax("/cms/bridge.php");
 //$xajax->configure('debug', true);
 //$xajax->configure('responseQueueSize', 200000);
 $xajax->configure('javascript URI','/cms/xajax');
-$xajax->setCharEncoding('windows-1251'); 
+$xajax->setCharEncoding('UTF-8'); 
 $xajax->configure("decodeUTF8Input", true);
 
-//  Подключение к БД
-if (file_exists('db.php')){
+//  РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
+if (@fopen('db.php', 'r')){
 	require ('db.php');
 	@mysql_connect($cms_config_host, $cms_config_user, $cms_config_password);
 	mysql_select_db($cms_config_db);
-	mysql_query('SET NAMES cp1251');
+	mysql_query('SET NAMES utf8');
 	//setlocale (LC_TIME, $cms_config_locale);
 }
-//	Раздел управления РНР
+//	Р Р°Р·РґРµР» СѓРїСЂР°РІР»РµРЅРёСЏ Р РќР 
 Error_Reporting(E_ALL & ~E_NOTICE);
 //Error_Reporting(E_ALL);
 
-//	Парсинг URL
+//	РџР°СЂСЃРёРЅРі URL
 $url = $_SERVER['REQUEST_URI'];
-// убираем слэши из начала и конца адреса
+// СѓР±РёСЂР°РµРј СЃР»СЌС€Рё РёР· РЅР°С‡Р°Р»Р° Рё РєРѕРЅС†Р° Р°РґСЂРµСЃР°
 if(stripos($url, '/') == 0){$url = substr($url, 1, strlen($url));}
 if(stripos($url, '/') == strlen($url)-1){$url = substr($url, 0, strlen($url)-1);}
 $url_query = explode("/", $url);

@@ -16,12 +16,12 @@
 			if ($sql['login'] != '' && $sql['usertype'] != '0' && $sql['email'] != '' && $data[$this->name]['password'] != '' && $data[$this->name]['password2'] != ''){
 				if ($data[$this->name]['password'] == $data[$this->name]['password2']){
 					if ($this->insert($sql)){$return = 'true';}
-					else { $return[] = array('call', 'message', "Ошибка добавления пользователя"); }
+					else { $return[] = array('call', 'message', "РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"); }
 				}else{
-					$return[] = array('call', 'message', "Пароли должны совпадать");
+					$return[] = array('call', 'message', "РџР°СЂРѕР»Рё РґРѕР»Р¶РЅС‹ СЃРѕРІРїР°РґР°С‚СЊ");
 				}
 			}else{
-				$return[] = array('call', 'message', "Поля: '<b>Логин</b>', '<b>E-mail</b>', '<b>Категория</b>', '<b>Пароль</b>' должны быть корректно заполнены");
+				$return[] = array('call', 'message', "РџРѕР»СЏ: '<b>Р›РѕРіРёРЅ</b>', '<b>E-mail</b>', '<b>РљР°С‚РµРіРѕСЂРёСЏ</b>', '<b>РџР°СЂРѕР»СЊ</b>' РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РєРѕСЂСЂРµРєС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅС‹");
 			} 
 		}else{
 			settype($id,"integer");
@@ -29,12 +29,12 @@
 				if ($data[$this->name]['password'] == $data[$this->name]['password2']){
 					if($data[$this->name]['password'] != ''){$sql['password'] = md5($data[$this->name]['password']);}
 				}else{
-					$return[] = array('call', 'message', "Пароли должны совпадать");
+					$return[] = array('call', 'message', "РџР°СЂРѕР»Рё РґРѕР»Р¶РЅС‹ СЃРѕРІРїР°РґР°С‚СЊ");
 				}
 				if ($this->update($sql, $id)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка редактирования пользователя"); }				
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"); }				
 			}else{
-				$return[] = array('call', 'message', "Поля: '<b>Логин</b>', '<b>E-mail</b>', '<b>Категория</b>' должны быть корректно заполнены");
+				$return[] = array('call', 'message', "РџРѕР»СЏ: '<b>Р›РѕРіРёРЅ</b>', '<b>E-mail</b>', '<b>РљР°С‚РµРіРѕСЂРёСЏ</b>' РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РєРѕСЂСЂРµРєС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅС‹");
 			} 
 		}
 		return $return;

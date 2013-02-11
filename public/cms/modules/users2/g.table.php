@@ -32,7 +32,7 @@
 				$o['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_row.tpl", $r);
 				$c++;
 			}
-		}else { $o['{#items#}'] = '<tr><td colspan="30">Пусто</td></tr>'; }
+		}else { $o['{#items#}'] = '<tr><td colspan="30">РџСѓСЃС‚Рѕ</td></tr>'; }
 		$o['{#basedir#}'] = BASEDIR;
 		$o['{#name#}'] = $this->name;
 		$o['{#navigator#}'] = $this->_navigator();

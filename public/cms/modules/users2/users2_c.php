@@ -63,7 +63,7 @@ class users2
 
 
 	function delete($id){
-		if (@mysql_query("DELETE FROM `$this->tbl` WHERE `id` = $id LIMIT 1")){return true;}
+		if (@mysql_query("DELETE FROM `$this->mod_tablename` WHERE `id` = $id LIMIT 1")){return true;}
 		else return false;
 	}
 
@@ -185,7 +185,7 @@ class users2
 			$o['{#email#}'] = $user['email'];
 			$o['{#block#}'] = ($user['block'] == 0) ? '' : ' checked';
 			$o['{#usertype#}'] = $this->tree(0,0,$user['usertype']);
-			$o['{#p#}'] = 'П';
+			$o['{#p#}'] = 'Рџ';
 			$o['{#adv_right#}'] = ($params) ? $params->adv_right($this->name, $user) : '';
 			$o['{#adv_bottom#}'] = ($params) ? $params->adv_bottom($this->name, $user) : '';
 		}else{
@@ -196,7 +196,7 @@ class users2
 			$o['{#email#}'] = '';
 			$o['{#block#}'] = '';
 			$o['{#usertype#}'] = $this->tree(0,0,0);
-			$o['{#p#}'] = 'Новый п';
+			$o['{#p#}'] = 'РќРѕРІС‹Р№ Рї';
 			$o['{#adv_right#}'] = ($params) ? $params->adv_right($this->name) : '';
 			$o['{#adv_bottom#}'] = ($params) ? $params->adv_bottom($this->name) : '';
 		}
@@ -249,7 +249,7 @@ class users2
 				$o['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_row.tpl", $r);
 				$c++;
 			}
-		}else { $o['{#items#}'] = '<tr><td colspan="30">Пусто</td></tr>'; }
+		}else { $o['{#items#}'] = '<tr><td colspan="30">РџСѓСЃС‚Рѕ</td></tr>'; }
 		$o['{#basedir#}'] = BASEDIR;
 		$o['{#name#}'] = $this->name;
 		$o['{#navigator#}'] = $this->_navigator();
@@ -265,11 +265,11 @@ class users2
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Разлогинить', "call('$this->name', '_logout', ['all', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Разблокировать', "call('$this->name', '_block', ['false', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Заблокировать', "call('$this->name', '_block', ['true', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-delete.png', 'Удалить', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-adduser.png', 'Создать', "call('$this->name', '_new');", 12)
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Р Р°Р·Р»РѕРіРёРЅРёС‚СЊ', "call('$this->name', '_logout', ['all', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Р Р°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_block', ['false', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Р—Р°Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_block', ['true', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-delete.png', 'РЈРґР°Р»РёС‚СЊ', "call('$this->name', '_del', 'confirmed');", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-adduser.png', 'РЎРѕР·РґР°С‚СЊ', "call('$this->name', '_new');", 12)
 				)
 			);
 		}
@@ -278,9 +278,9 @@ class users2
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Сохранить', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Применить', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Отмена', "call('$this->name', '_cancel', 'new');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'РЎРѕС…СЂР°РЅРёС‚СЊ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'РџСЂРёРјРµРЅРёС‚СЊ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'РћС‚РјРµРЅР°', "call('$this->name', '_cancel', 'new');", 13)
 				)
 			);
 		}
@@ -289,10 +289,10 @@ class users2
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Сохранить', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Применить', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Блокировать', "call('$this->name', '_lock');", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Отмена', "call('$this->name', '_cancel', '$id');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'РЎРѕС…СЂР°РЅРёС‚СЊ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'РџСЂРёРјРµРЅРёС‚СЊ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Р‘Р»РѕРєРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_lock');", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'РћС‚РјРµРЅР°', "call('$this->name', '_cancel', '$id');", 13)
 				)
 			);
 		}
@@ -342,7 +342,7 @@ class users2
 			}
 			return $out;
 		}
-		else return '<tr><td colspan="9">Пусто</td></tr>';		
+		else return '<tr><td colspan="9">РџСѓСЃС‚Рѕ</td></tr>';		
 	}
 
 
@@ -366,10 +366,10 @@ class users2
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name."/".mysql_insert_id());
 			}else{
-				$return[] = array('call', 'message', "Информация сохранена");
+				$return[] = array('call', 'message', "РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°");
 			}
 		}
 		return $return;
@@ -378,11 +378,11 @@ class users2
 
 	function _block($id){
 		if (is_array($id)){
-			if ($id[1] == 'null'){return array(array('call', 'message', "Не выбран не один элемент"));}
+			if ($id[1] == 'null'){return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚"));}
 			else{
 				$errors = array();
 				$to = ($id[0] == 'true') ? '1' : '0';
-				$mes = ($id[0] == 'true') ? "Элементы заблокированы" : "Элементы разблокированы";
+				$mes = ($id[0] == 'true') ? "Р­Р»РµРјРµРЅС‚С‹ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅС‹" : "Р­Р»РµРјРµРЅС‚С‹ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅС‹";
 				foreach ($id[1] as $ids){
 					if (!$this->update_e('block', $to, $ids)){$errors[] = $ids;}
 				}
@@ -391,7 +391,7 @@ class users2
 					$return[] = array('call', 'message', $mes);
 					return $return;
 				}
-				else return array(array('call', 'message', "Ошибка обработки ID: ".implode(', ', $errors)));
+				else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID: ".implode(', ', $errors)));
 			}
 		}else{
 			$published = $this->get($id, 'block');
@@ -420,44 +420,6 @@ class users2
 	}
 
 
-	function _delete($data){
-		$categories = new categories();
-		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
-			else{
-				$errors = array();
-				foreach ($data[1] as $item){
-					$el = $this->get($item);
-					if ($el['checked_out'] != 0){ $errors[] = $item.' (элемент заблокирован)'; }
-					elseif (!$this->delete($item)){ $errors[] = $item.' (ошибка удаления)'; }
-				}
-				if (count($errors)==0){
-					$return[] = array('assign', $this->name.'_table', 'innerHTML', $this->table());
-					$return[] = array('call', 'modal.hide');
-					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) удалены');
-					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
-			}
-		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
-			else{
-				foreach ($data[1] as $item){
-					$elem = $this->get($item); 
-					$o['{#id#}'] = "$item";
-					$o['{#title#}'] = $elem['login'];
-					$out['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_row.tpl", $o);
-				}
-				$p[] = 'width=500&height=265&title=Удаление&close=true';
-				$out['{#basedir#}'] =  BASEDIR;
-				$out['{#name#}'] =  $this->name;
-				$p[] = $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_del.tpl", $out);
-				return array(array('call', 'modal.show', $p));				
-			}
-		}
-	}
-
-
 	function _edit($id){
 		if ($id != 'new'){ $this->_check_out($id, 'true'); }
 		return array(array('redirect', BASEDIR."/".$this->name."/$id"));
@@ -469,7 +431,7 @@ class users2
 
 	function _logout($id){
 		if (is_array($id)){
-			if ($id[1] == 'null'){return array(array('call', 'message', "Не выбран не один элемент"));}
+			if ($id[1] == 'null'){return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚"));}
 			else{
 				$errors = array();
 				foreach ($id[1] as $ids){
@@ -483,7 +445,7 @@ class users2
 					else {$errors[] = $ids;}
 				}
 				if (count($errors)==0){
-					$return[] = array('call', 'message', "Пользователи разлогинены");
+					$return[] = array('call', 'message', "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё СЂР°Р·Р»РѕРіРёРЅРµРЅС‹");
 					if ($redirect){
 						$return[] = array('sleep', 10);
 						$return[] = array('redirect', BASEDIR);
@@ -492,13 +454,13 @@ class users2
 					}
 					return $return;
 				}
-				else return array(array('call', 'message', "Ошибка обработки пользователей ID: ".implode(', ', $errors)));
+				else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ ID: ".implode(', ', $errors)));
 			}
 		}
 		else{
 			if ($this->set_unlogged($id)){
 				$username = ($this->get($id,'name') != '') ? $this->get($id,'name') : $this->get($id,'login');
-				$return[] = array('call', 'message', "Пользователь $username разлогинен");
+				$return[] = array('call', 'message', "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ $username СЂР°Р·Р»РѕРіРёРЅРµРЅ");
 				if ($_SESSION['cms']['user_id'] == $id){
 					$_SESSION['cms']['authorized'] = 0;
 					session_destroy();
@@ -509,7 +471,7 @@ class users2
 				}				
 				return $return;
 			}
-			else return array(array('call', 'message', "Ошибка"));
+			else return array(array('call', 'message', "РћС€РёР±РєР°"));
 		}
 	}
 
@@ -522,17 +484,17 @@ class users2
 		$t = count($this->get_list($p));
 		foreach($rows as $row){
 			$n = ($row=='all') ? '0' : $row;
-			$tx = ($row=='all') ? 'Все' : $row;
+			$tx = ($row=='all') ? 'Р’СЃРµ' : $row;
 			$rn .= ($row=='all'&&$r=='0'||$row==$r)?'<option value="'.$n.'" selected="selected">'.$tx.'</option>':'<option value="'.$n.'">'.$tx.'</option>';
 		}
 		$pages = ($r != 0) ? ($t/$r > floor($t/$r)) ? floor($t/$r)+1 : $t/$r : 1;
 		for($i=1; $i<=$pages; $i++){
 			$pgs .= ($i == $c) ? '<a class="page_c">'.$i.'</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$i.');" class="page_n">'.$i.'</a>';
 		}
-		$first = ($c==1) ? '<a class="page_l">Начало</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', 1);" class="page_l">Начало</a>';
-		$last = ($c==$pages) ? '<a class="page_r">Конец</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$pages.');" class="page_r">Конец</a>';
+		$first = ($c==1) ? '<a class="page_l">РќР°С‡Р°Р»Рѕ</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', 1);" class="page_l">РќР°С‡Р°Р»Рѕ</a>';
+		$last = ($c==$pages) ? '<a class="page_r">РљРѕРЅРµС†</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$pages.');" class="page_r">РљРѕРЅРµС†</a>';
 		$rows = '<select id="rnum" onChange="call(\''.$this->name.'\', \'_set_rnum\', this.value);">'.$rn.'</select>';
-		return 'Количество строк:'.$rows.$first.$pgs.$last;
+		return 'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє:'.$rows.$first.$pgs.$last;
 	}
 
 
@@ -555,11 +517,11 @@ class users2
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Элемент добавлен';
+				$_SESSION['cms']['message'] = 'Р­Р»РµРјРµРЅС‚ РґРѕР±Р°РІР»РµРЅ';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}elseif ($data[$this->name]['db_id'] != 'new'){
 				$this->_check_out($data[$this->name]['db_id'], 'false');
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}
 		}
@@ -584,12 +546,12 @@ class users2
 			if ($sql['login'] != '' && $sql['usertype'] != '0' && $sql['email'] != '' && $data[$this->name]['password'] != '' && $data[$this->name]['password2'] != ''){
 				if ($data[$this->name]['password'] == $data[$this->name]['password2']){
 					if ($this->insert($sql)){$return = 'true';}
-					else { $return[] = array('call', 'message', "Ошибка добавления пользователя"); }
+					else { $return[] = array('call', 'message', "РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"); }
 				}else{
-					$return[] = array('call', 'message', "Пароли должны совпадать");
+					$return[] = array('call', 'message', "РџР°СЂРѕР»Рё РґРѕР»Р¶РЅС‹ СЃРѕРІРїР°РґР°С‚СЊ");
 				}
 			}else{
-				$return[] = array('call', 'message', "Поля: '<b>Логин</b>', '<b>E-mail</b>', '<b>Категория</b>', '<b>Пароль</b>' должны быть корректно заполнены");
+				$return[] = array('call', 'message', "РџРѕР»СЏ: '<b>Р›РѕРіРёРЅ</b>', '<b>E-mail</b>', '<b>РљР°С‚РµРіРѕСЂРёСЏ</b>', '<b>РџР°СЂРѕР»СЊ</b>' РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РєРѕСЂСЂРµРєС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅС‹");
 			} 
 		}else{
 			settype($id,"integer");
@@ -597,12 +559,12 @@ class users2
 				if ($data[$this->name]['password'] == $data[$this->name]['password2']){
 					if($data[$this->name]['password'] != ''){$sql['password'] = md5($data[$this->name]['password']);}
 				}else{
-					$return[] = array('call', 'message', "Пароли должны совпадать");
+					$return[] = array('call', 'message', "РџР°СЂРѕР»Рё РґРѕР»Р¶РЅС‹ СЃРѕРІРїР°РґР°С‚СЊ");
 				}
 				if ($this->update($sql, $id)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка редактирования пользователя"); }				
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"); }				
 			}else{
-				$return[] = array('call', 'message', "Поля: '<b>Логин</b>', '<b>E-mail</b>', '<b>Категория</b>' должны быть корректно заполнены");
+				$return[] = array('call', 'message', "РџРѕР»СЏ: '<b>Р›РѕРіРёРЅ</b>', '<b>E-mail</b>', '<b>РљР°С‚РµРіРѕСЂРёСЏ</b>' РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РєРѕСЂСЂРµРєС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅС‹");
 			} 
 		}
 		return $return;

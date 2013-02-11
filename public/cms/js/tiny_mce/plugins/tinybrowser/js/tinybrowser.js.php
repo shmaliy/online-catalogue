@@ -62,7 +62,7 @@ elseif($mainpage && $_GET['feid'] != '')
 	<?php
 	}
 ?>
-<!--//
+
 rowHighlight = function() {
 var x = document.getElementsByTagName('tr');
 for (var i=0; i<x.length; i++) 
@@ -77,4 +77,4 @@ for (var ii=0;ii<y.length;ii++)
 	y[ii].onmouseout = function () {this.className = this.className.replace("over", ""); this.className = this.className.replace(" ", "");}
 	}
 }
-//-->
+

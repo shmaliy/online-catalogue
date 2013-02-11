@@ -12,7 +12,7 @@
 			$o['{#email#}'] = $user['email'];
 			$o['{#block#}'] = ($user['block'] == 0) ? '' : ' checked';
 			$o['{#usertype#}'] = $this->tree(0,0,$user['usertype']);
-			$o['{#p#}'] = 'П';
+			$o['{#p#}'] = 'Рџ';
 			$o['{#adv_right#}'] = ($params) ? $params->adv_right($this->name, $user) : '';
 			$o['{#adv_bottom#}'] = ($params) ? $params->adv_bottom($this->name, $user) : '';
 		}else{
@@ -23,7 +23,7 @@
 			$o['{#email#}'] = '';
 			$o['{#block#}'] = '';
 			$o['{#usertype#}'] = $this->tree(0,0,0);
-			$o['{#p#}'] = 'Новый п';
+			$o['{#p#}'] = 'РќРѕРІС‹Р№ Рї';
 			$o['{#adv_right#}'] = ($params) ? $params->adv_right($this->name) : '';
 			$o['{#adv_bottom#}'] = ($params) ? $params->adv_bottom($this->name) : '';
 		}

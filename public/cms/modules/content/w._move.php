@@ -2,12 +2,12 @@
 	function _move($data){
 		$categories = new categories();
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
 			else{
 				$errors = array();
 				foreach ($data[1] as $item){
 					$el = $this->get($item);
-					if ($el['checked_out'] != 0){ $errors[] = $item.' (элемент заблокирован)'; }
+					if ($el['checked_out'] != 0){ $errors[] = $item.' (СЌР»РµРјРµРЅС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ)'; }
 					else {
 						$this->update_e('parent_id', $data[0], $item);
 						$this->update_e('ordering', 0, $item);
@@ -20,12 +20,12 @@
 					$return[] = array('assign', $this->name.'_table', 'innerHTML', $this->table());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) перемещены');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) РїРµСЂРµРјРµС‰РµРЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -33,7 +33,7 @@
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Перемещение&close=true';
+				$p[] = 'width=500&height=265&title=РџРµСЂРµРјРµС‰РµРЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$out['{#tree#}'] = $categories->tree(0, 0, $_SESSION['cms']['mod'][$this->name]['parent']);

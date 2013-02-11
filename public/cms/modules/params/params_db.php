@@ -9,8 +9,8 @@ class params_db
 		$this->mod_tablename = $GLOBALS['cms_config_dbprefix'].'params';
 		
 		$this->ref = array('categories', 'content', 'users2','shop_goods');
-		$this->type = array('- Âûáåðèòå òèï ïîëÿ -','TEXT','TEXTAREA (tinyMCE)','CHECKBOX','POPUP','SELECT','MULTI SELECT');
-		$this->src = array('- Âûáåðèòå ìîäóëü -','tags','categories','content','users2');
+		$this->type = array('- Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð¿Ð¾Ð»Ñ -','TEXT','TEXTAREA (tinyMCE)','CHECKBOX','POPUP','SELECT','MULTI SELECT');
+		$this->src = array('- Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¼Ð¾Ð´ÑƒÐ»ÑŒ -','tags','categories','content','users2');
 		
 		$query  = "CREATE TABLE IF NOT EXISTS `$this->mod_tablename` ( ";
 		$query .= "`id` INT NOT NULL AUTO_INCREMENT, ";

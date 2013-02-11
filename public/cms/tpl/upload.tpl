@@ -50,8 +50,8 @@ function swfup(){
 }
 </script>
 <div class="tabs_btn" id="upload_btn">
-	<a href="javascript:tabs('upload', 0)" class="selected"><span>Браузер</span></a>
-	<a href="javascript:tabs('upload', 1)"><span>Загрузить</span></a>
+	<a href="javascript:tabs('upload', 0)" class="selected"><span>Р‘СЂР°СѓР·РµСЂ</span></a>
+	<a href="javascript:tabs('upload', 1)"><span>Р—Р°РіСЂСѓР·РёС‚СЊ</span></a>
 	<div class="clr"></div>
 </div>
 <div id="upload">
@@ -59,16 +59,16 @@ function swfup(){
 		{#fb#}
 	</div>
 	<div class="tab">
-		<div class="folders"><div class="txt">Папка:</div><select id="fb_path2" onchange="call('core_fb','_fb_setpath',this.value);">{#folders#}</select><div class="f_mode"><a class="uppath" id="fb_uppath2" href="javascript:call('core_fb','_fb_setpath','{#uppath#}');"><img class="f_up" src="{#basedir#}/images/folder_up3.png" /></a><a class="refresh" id="fb_refresh2" href="javascript:call('core','_fb_setpath','{#currpath#}');"><img class="f_up" src="{#basedir#}/images/refresh.png" /></a></div></div>
+		<div class="folders"><div class="txt">РџР°РїРєР°:</div><select id="fb_path2" onchange="call('core_fb','_fb_setpath',this.value);">{#folders#}</select><div class="f_mode"><a class="uppath" id="fb_uppath2" href="javascript:call('core_fb','_fb_setpath','{#uppath#}');"><img class="f_up" src="{#basedir#}/images/folder_up3.png" /></a><a class="refresh" id="fb_refresh2" href="javascript:call('core','_fb_setpath','{#currpath#}');"><img class="f_up" src="{#basedir#}/images/refresh.png" /></a></div></div>
 		<form id="form1" enctype="multipart/form-data" action="{#basedir#}/upload.php?path={#path#}" method="post">
 			<div class="fieldset flash" id="fsUploadProgress">
-				<span class="legend">Очередь загрузки</span>
+				<span class="legend">РћС‡РµСЂРµРґСЊ Р·Р°РіСЂСѓР·РєРё</span>
 			</div>
 			<div class="divButtons">
 				<span id="spanButtonPlaceHolder"></span>
-				<input id="btnCancel" type="button" value="Отменить все" onclick="swfu.cancelQueue();" disabled="disabled" style="margin:0;" />
+				<input id="btnCancel" type="button" value="РћС‚РјРµРЅРёС‚СЊ РІСЃРµ" onclick="swfu.cancelQueue();" disabled="disabled" style="margin:0;" />
 			</div>
-			<div id="divStatus">0 файлов загружено</div>
+			<div id="divStatus">0 С„Р°Р№Р»РѕРІ Р·Р°РіСЂСѓР¶РµРЅРѕ</div>
 			<div class="clr"></div>
 		</form>
 	</div>

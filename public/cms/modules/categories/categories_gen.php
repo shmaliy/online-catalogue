@@ -8,12 +8,12 @@ class categories_gen extends categories_db
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'Показать', "call('$this->name', '_publish', ['true', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'Скрыть', "call('$this->name', '_publish', ['false', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-move.png', 'Переместить', "call('$this->name', '_move', ['confirm', getcheckbox('ctable_contents')]);", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-copy.png', 'Копировать', "call('$this->name', '_copy', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-trash.png', 'Удалить', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
-					array(BASEDIR.'/images/toolbar/icon-32-new.png', 'Создать', "call('$this->name', '_new');", 12)
+					array(BASEDIR.'/images/toolbar/icon-32-publish.png', 'РџРѕРєР°Р·Р°С‚СЊ', "call('$this->name', '_publish', ['true', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-unpublish.png', 'РЎРєСЂС‹С‚СЊ', "call('$this->name', '_publish', ['false', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-move.png', 'РџРµСЂРµРјРµСЃС‚РёС‚СЊ', "call('$this->name', '_move', ['confirm', getcheckbox('ctable_contents')]);", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-copy.png', 'РљРѕРїРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_copy', ['confirm', getcheckbox('ctable_contents')]);", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-trash.png', 'РЈРґР°Р»РёС‚СЊ', "call('$this->name', '_delete', ['confirm', getcheckbox('ctable_contents')]);", 12),
+					array(BASEDIR.'/images/toolbar/icon-32-new.png', 'РЎРѕР·РґР°С‚СЊ', "call('$this->name', '_new');", 12)
 				)
 			);
 		}
@@ -22,9 +22,9 @@ class categories_gen extends categories_db
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Сохранить', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Применить', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Отмена', "call('$this->name', '_cancel', 'new');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'РЎРѕС…СЂР°РЅРёС‚СЊ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'РџСЂРёРјРµРЅРёС‚СЊ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'РћС‚РјРµРЅР°', "call('$this->name', '_cancel', 'new');", 13)
 				)
 			);
 		}
@@ -33,10 +33,10 @@ class categories_gen extends categories_db
 				'icon' => $this->info['MODULE']['ICON48']['#val'],
 				'title' => $this->info['MODULE']['NAME']['#val'],
 				'buttons' => array(
-					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'Сохранить', "call('$this->name', '_save', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'Применить', "call('$this->name', '_apply', getform('$this->name'));", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Блокировать', "call('$this->name', '_lock');", 13),
-					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'Отмена', "call('$this->name', '_cancel', '$id');", 13)
+					array(BASEDIR.'/images/toolbar/icon-32-save.png', 'РЎРѕС…СЂР°РЅРёС‚СЊ', "call('$this->name', '_save', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-apply.png', 'РџСЂРёРјРµРЅРёС‚СЊ', "call('$this->name', '_apply', getform('$this->name'));", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-lock.png', 'Р‘Р»РѕРєРёСЂРѕРІР°С‚СЊ', "call('$this->name', '_lock');", 13),
+					array(BASEDIR.'/images/toolbar/icon-32-cancel.png', 'РћС‚РјРµРЅР°', "call('$this->name', '_cancel', '$id');", 13)
 				)
 			);
 		}
@@ -59,8 +59,8 @@ class categories_gen extends categories_db
 		$o['{#basedir#}'] =  BASEDIR;
 		$o['{#name#}'] =  $this->name;
 		$o['{#navigator#}'] = $this->core->navigator($this->name);
-		$o['{#adv_fields#}'] = '<th>Подкатегорий</th>';
-		$o['{#adv_fields#}'] .= (class_exists('content', false)) ? '<th>Элементов</th>' : '';
+		$o['{#adv_fields#}'] = '<th>РџРѕРґРєР°С‚РµРіРѕСЂРёР№</th>';
+		$o['{#adv_fields#}'] .= (class_exists('content', false)) ? '<th>Р­Р»РµРјРµРЅС‚РѕРІ</th>' : '';
 		$o['{#adv_fields#}'] .= ($params != false) ? $params->adv_head($this->name) : '';
 		$o['{#items#}'] =  $this->_list();
 		$o['{#tree#}'] = $this->tree(0, 0, $_SESSION['cms']['mod'][$this->name]['parent']);
@@ -80,7 +80,7 @@ class categories_gen extends categories_db
 				$o['{#id#}'] = $list[$i]['id'];
 				$o['{#title#}'] = ($list[$i]['title_alias'] != '') ? $list[$i]['title'].' ( '.$list[$i]['title_alias'].' ) ' : $list[$i]['title'];
 				$o['{#image#}'] = $list[$i]['image'];
-				$o['{#album#}'] = ($list[$i]['parent_id'] != 0) ? $this->get($list[$i]['parent_id'], 'title') : '- НЕТ -';
+				$o['{#album#}'] = ($list[$i]['parent_id'] != 0) ? $this->get($list[$i]['parent_id'], 'title') : '- РќР•Рў -';
 				$o['{#published#}'] = ($list[$i]['published'] == 1) ? '<img src="'.BASEDIR.'/images/adm/publish_g.png" />' : '<img src="'.BASEDIR.'/images/adm/publish_x.png" />';
 				$categories = $this->get_list($list[$i]['id']);
 				if ($categories){
@@ -118,7 +118,7 @@ class categories_gen extends categories_db
 			}
 			return $out;
 		}
-		else return '<tr><td colspan="30">Пусто</td></tr>';		
+		else return '<tr><td colspan="30">РџСѓСЃС‚Рѕ</td></tr>';		
 	}
 	
 	function editor($id){
@@ -150,7 +150,7 @@ class categories_gen extends categories_db
 	}
 	
 	function tree($parent, $level, $selected){
-		$out .= ($level == 0) ? '<option value="0" class="tab_0">- НЕТ -</option>' : '';
+		$out .= ($level == 0) ? '<option value="0" class="tab_0">- РќР•Рў -</option>' : '';
 		$list = $this->get_list($parent);
 		if ($list){
 			for($i=0; $i<count($list); $i++){

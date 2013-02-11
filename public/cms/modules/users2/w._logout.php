@@ -1,7 +1,7 @@
 <?php
 	function _logout($id){
 		if (is_array($id)){
-			if ($id[1] == 'null'){return array(array('call', 'message', "Íå âûáðàí íå îäèí ýëåìåíò"));}
+			if ($id[1] == 'null'){return array(array('call', 'message', "ÐÐµ Ð²Ñ‹Ð±Ñ€Ð°Ð½ Ð½Ðµ Ð¾Ð´Ð¸Ð½ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚"));}
 			else{
 				$errors = array();
 				foreach ($id[1] as $ids){
@@ -15,7 +15,7 @@
 					else {$errors[] = $ids;}
 				}
 				if (count($errors)==0){
-					$return[] = array('call', 'message', "Ïîëüçîâàòåëè ðàçëîãèíåíû");
+					$return[] = array('call', 'message', "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ð¸ Ñ€Ð°Ð·Ð»Ð¾Ð³Ð¸Ð½ÐµÐ½Ñ‹");
 					if ($redirect){
 						$return[] = array('sleep', 10);
 						$return[] = array('redirect', BASEDIR);
@@ -24,13 +24,13 @@
 					}
 					return $return;
 				}
-				else return array(array('call', 'message', "Îøèáêà îáðàáîòêè ïîëüçîâàòåëåé ID: ".implode(', ', $errors)));
+				else return array(array('call', 'message', "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ ID: ".implode(', ', $errors)));
 			}
 		}
 		else{
 			if ($this->set_unlogged($id)){
 				$username = ($this->get($id,'name') != '') ? $this->get($id,'name') : $this->get($id,'login');
-				$return[] = array('call', 'message', "Ïîëüçîâàòåëü $username ðàçëîãèíåí");
+				$return[] = array('call', 'message', "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ $username Ñ€Ð°Ð·Ð»Ð¾Ð³Ð¸Ð½ÐµÐ½");
 				if ($_SESSION['cms']['user_id'] == $id){
 					$_SESSION['cms']['authorized'] = 0;
 					session_destroy();
@@ -41,7 +41,7 @@
 				}				
 				return $return;
 			}
-			else return array(array('call', 'message', "Îøèáêà"));
+			else return array(array('call', 'message', "ÐžÑˆÐ¸Ð±ÐºÐ°"));
 		}
 	}
 ?>

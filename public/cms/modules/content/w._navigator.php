@@ -7,16 +7,16 @@
 		$t = count($this->get_list($p));
 		foreach($rows as $row){
 			$n = ($row=='all') ? '0' : $row;
-			$tx = ($row=='all') ? 'Все' : $row;
+			$tx = ($row=='all') ? 'Р’СЃРµ' : $row;
 			$rn .= ($row=='all'&&$r=='0'||$row==$r)?'<option value="'.$n.'" selected="selected">'.$tx.'</option>':'<option value="'.$n.'">'.$tx.'</option>';
 		}
 		$pages = ($r != 0) ? ($t/$r > floor($t/$r)) ? floor($t/$r)+1 : $t/$r : 1;
 		for($i=1; $i<=$pages; $i++){
 			$pgs .= ($i == $c) ? '<a class="page_c">'.$i.'</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$i.');" class="page_n">'.$i.'</a>';
 		}
-		$first = ($c==1) ? '<a class="page_l">Начало</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', 1);" class="page_l">Начало</a>';
-		$last = ($c==$pages) ? '<a class="page_r">Конец</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$pages.');" class="page_r">Конец</a>';
+		$first = ($c==1) ? '<a class="page_l">РќР°С‡Р°Р»Рѕ</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', 1);" class="page_l">РќР°С‡Р°Р»Рѕ</a>';
+		$last = ($c==$pages) ? '<a class="page_r">РљРѕРЅРµС†</a>' : '<a href="javascript:call(\''.$this->name.'\', \'_set_page\', '.$pages.');" class="page_r">РљРѕРЅРµС†</a>';
 		$rows = '<select id="rnum" onChange="call(\''.$this->name.'\', \'_set_rnum\', this.value);">'.$rn.'</select>';
-		return 'Количество строк:'.$rows.$first.$pgs.$last;
+		return 'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє:'.$rows.$first.$pgs.$last;
 	}
 ?>

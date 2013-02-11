@@ -1,7 +1,7 @@
 <!--[if IE 6]>
 <script src="/cms/js/DD_belatedPNG_0.0.8a-min.js"></script>
 <script>
-// в строке ниже пишем элементы которые нужно хакнуть(дивы, классы, айди, фон любого селектора, к примеру ('#wrap') для <div id="wrap">
+// РІ СЃС‚СЂРѕРєРµ РЅРёР¶Рµ РїРёС€РµРј СЌР»РµРјРµРЅС‚С‹ РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ С…Р°РєРЅСѓС‚СЊ(РґРёРІС‹, РєР»Р°СЃСЃС‹, Р°Р№РґРё, С„РѕРЅ Р»СЋР±РѕРіРѕ СЃРµР»РµРєС‚РѕСЂР°, Рє РїСЂРёРјРµСЂСѓ ('#wrap') РґР»СЏ <div id="wrap">
 DD_belatedPNG.fix('.fix, .info_float, #modal .title,#modal .title div, #modal .body, #modal .body div, #modal .bottom, #modal .bottom div');
 </script>
 <![endif]-->

@@ -2,24 +2,20 @@
 
 class ErrorController extends Zend_Controller_Action
 {
-	public function init()
-	{
-    	$localization = new Zend_Session_Namespace('Localization');
-    	$this->_localization = $localization;
-    	$this->view->language = $localization->language;
-		
-    	$context = $this->_helper->AjaxContext();
-        $context->addActionContext('error', 'json');
-        $context->initContext('json');
-	}
 
-    public function errorAction()
+    public function init()
+    {
+    	$ajaxContext = $this->_helper->getHelper('AjaxContext');
+    	$ajaxContext->addActionContext('error', 'json')
+    	->initContext('json');
+    }
+	
+	public function errorAction()
     {
         $errors = $this->_getParam('error_handler');
         
         if (!$errors) {
             $this->view->message = 'You have reached the error page';
-            $this->view->code = 404;
             return;
         }
         
@@ -30,13 +26,11 @@ class ErrorController extends Zend_Controller_Action
         
                 // 404 error -- controller or action not found
                 $this->getResponse()->setHttpResponseCode(404);
-                $this->view->code = 404;
                 $this->view->message = 'Page not found';
                 break;
             default:
                 // application error
                 $this->getResponse()->setHttpResponseCode(500);
-            	$this->view->code = 500;
                 $this->view->message = 'Application error';
                 break;
         }
@@ -51,7 +45,7 @@ class ErrorController extends Zend_Controller_Action
             $this->view->exception = $errors->exception;
         }
         
-        $this->view->request = $errors->request;
+        $this->view->request   = $errors->request;
     }
 
     public function getLog()
@@ -63,6 +57,13 @@ class ErrorController extends Zend_Controller_Action
         $log = $bootstrap->getResource('Log');
         return $log;
     }
+	
+	public function ieerrorAction()
+	{
+		$this->_helper->layout()->disableLayout();
+		$this->view->versionCurrent = $this->getRequest()->getParam('errorVersion');
+		$this->view->versionNeeded = $this->getRequest()->getParam('errorNeeded');
+	}
 
 
 }

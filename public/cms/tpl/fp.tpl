@@ -4,9 +4,9 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th class="title">Логин/Имя(логин)</th>
-					<th>Группа</th>
-					<th>Разлогинить</th>
+					<th class="title">Р›РѕРіРёРЅ/РРјСЏ(Р»РѕРіРёРЅ)</th>
+					<th>Р“СЂСѓРїРїР°</th>
+					<th>Р Р°Р·Р»РѕРіРёРЅРёС‚СЊ</th>
 				</tr>
 			</thead>
 			<tbody id="ctable_contents">

@@ -24,4 +24,5 @@ if (!@fopen('bridge.php', 'r')){
 	}else{echo 'cannot open zip file';}
 	echo '<script>window.location.href="'.str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace("\\", '/', getcwd())).'";</script>';
 }else{ require('bridge.php'); }
+//var_export($_SESSION);
 ?>

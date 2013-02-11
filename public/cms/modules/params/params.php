@@ -22,10 +22,10 @@ class params extends params_gen
 		$prefix = 'params_'.$data[1].'_'.$data[2];
 		$fdata = $f[$prefix];
 		if ($fdata[$prefix.'_title'] != ''){
-			if ($fdata[$prefix.'_type'] == 0){ $error[] = 'Выберите тип параметра <b>'.$refn.' параметр '.$data[1].'</b>'; }
+			if ($fdata[$prefix.'_type'] == 0){ $error[] = 'Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РїР°СЂР°РјРµС‚СЂР° <b>'.$refn.' РїР°СЂР°РјРµС‚СЂ '.$data[1].'</b>'; }
 			elseif ($fdata[$prefix.'_type'] == 4 || $fdata[$prefix.'_type'] == 5 || $fdata[$prefix.'_type'] == 6){
 				if ($fdata[$prefix.'_src'] == '0'){
-					$error[] = "Выберите исходные значения для <b>'.$refn.' параметр '.$data[1].'</b>'";
+					$error[] = "Р’С‹Р±РµСЂРёС‚Рµ РёСЃС…РѕРґРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ <b>'.$refn.' РїР°СЂР°РјРµС‚СЂ '.$data[1].'</b>'";
 				}
 			}
 		}
@@ -36,8 +36,8 @@ class params extends params_gen
 			$sql['ref_in_list'] = ($fdata[$prefix.'_in_list']=='true') ? '1': '0';
 			$sql['ref_src'] = $fdata[$prefix.'_src'];
 			$sql['ref_srcv'] = $fdata[$prefix.'_srcv'];
-			if ($this->update($sql, $id)){ $return[] = array('call', 'message', "Изменения сохранены");
-			}else { $return[] = array('call', 'message', "Ошибка сохранения<br />".implode('<br />', $sql).$id); }			
+			if ($this->update($sql, $id)){ $return[] = array('call', 'message', "РР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹");
+			}else { $return[] = array('call', 'message', "РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ<br />".implode('<br />', $sql).$id); }			
 		}else{
 			$return[] = array('call', 'message', implode('<br />', $error));
 		}
@@ -82,7 +82,7 @@ class params extends params_gen
 	}
 	
 	function popup($data){
-		$p[] = 'width=800&height=515&title=Выбор&close=true';
+		$p[] = 'width=800&height=515&title=Р’С‹Р±РѕСЂ&close=true';
 		$p[] = $this->adv_popup($data[0], substr($data[1],5,strlen($data[1])), $data[2]);
 		$return[] = array('call', 'modal.show', $p);
 		return $return;		

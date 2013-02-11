@@ -1,68 +1,38 @@
-<div class="error_page">
-	<div>
-		<span class="error_page_code">
-			<?php echo $this->code ? $this->code : ($this->code = 500); ?>
-		</span>
-		<span class="error_page_name">
-			<?php 
-				if ($this->code == 404) {
-					if ($this->language == 'en') {
-						echo 'Page not found';
-					} else {
-						echo 'Страница не найдена';
-					}
-				} else {
-					if ($this->language == 'en') {
-						echo 'Server internal error';
-					} else {
-						echo 'Внутренняя ошибка сервера';
-					}
-				}
-			?>
-		</span>
-	</div>
+<div style="color:#000; margin:10px; padding:10px; border:1px dotted #ccc;">
+    <div style="font-size:20px; font-weight:bold;">An error occurred</div>
+    <div style="font-size:18px;"><?php echo $this->message ?></div>
 	<?php if (isset($this->exception)): ?>
-	<div class="error_page_exception">
-		<span class="error_page_exception_message"><?php echo $this->exception->getMessage() ?></span>
-		<div class="error_page_exception_stack_title">Stack trace:</div>
-	    <ol class="error_page_exception_stack_list">
-    	<?php $trace = $this->exception->getTrace(); ?>
-		<?php foreach ($trace as $line): ?>
-    		<li>
-    			<span class="error_page_exception_stack_list_function">
-    				<?php
-    				echo $line['class'];
-    				echo $line['type'];
-    				echo $line['function'];
-    				echo '(';
-    				$args = array();
-    				foreach ($line['args'] as $arg) {
-    					if (is_object($arg)) {
-    						$args[] = 'Object(' . get_class($arg) . ')';
-    					} else if (is_string($arg)){
-    						$args[] = "'" . $arg . "'";
-    					} else if (is_array($arg)){
-    						$args[] = "Array()";
-    					} else {
-    						$args[] = (string) $arg;
-    					}
-    				}
-    				echo implode(', ', $args);
-    				echo ')';
-    				?>
-    			</span>
-    			<span class="error_page_exception_stack_list_file">
-    				<?php 
-    				echo $line['file'] . ' (' . $line['line'] . ')';
-    				?>
-    			</span>
-    		</li>
-    	<?php endforeach; ?>
-		</ol>
-		<div class="error_page_exception_stack_title">Request Parameters:</div>
-        <div class="error_page_exception_request">
-            <pre><?php echo var_export($this->request->getParams(), true); ?></pre>
+	<div style="padding:10px 0 0;">
+    	<div style="font-size:18px; font-weight:bold;">Detailed exception information:</div>
+        <div style="padding:0 0 0 10px;">
+            <div style="font-size:16px; font-weight:bold; padding:0 0 15px;">
+            	Message: <span style="font-size:14px; font-weight:normal;"><?php echo $this->exception->getMessage() ?></span>
+            </div>
+            <div style="font-size:14px; padding:0 0 15px;">
+            	<div style="font-size:16px; font-weight:bold;">Stack trace:</div>
+	            <ol style="padding:0 0 0 30px; margin:0;"><?php
+					$strArray = explode( '<br />', nl2br( $this->exception->getTraceAsString() ) );
+					foreach ($strArray as $str) {
+						$pos1 = stripos($str, ' ');
+						$pos2 = stripos($str, ': ');
+						if ($pos2 !== false) {
+							$file = substr($str, $pos1, $pos2-$pos1);
+							$class = substr($str, $pos2+1)
+							?><li style="padding:3px 0;"><?php echo $class ?>
+								<div style="font-size:12px;"><?php echo $file ?></div>
+							</li><?php
+						} else {
+							$class = substr($str, $pos1)
+							?><li style="padding:3px 0;"><?php echo $class ?></li><?php
+						}
+					}
+					//echo nl2br($this->exception->getTraceAsString());
+				?></ol>
+            </div>
+            <div style="font-size:16px; font-weight:bold;">Request Parameters:
+                <pre style="font-size:12px; font-family:'Open Sans'; font-weight:normal; margin:0 0 0 10px;"><?php echo var_export($this->request->getParams(), true) ?></pre>
+            </div>
         </div>
-	</div>
-	<?php endif; ?>
+    </div>
+    <?php endif ?>
 </div>

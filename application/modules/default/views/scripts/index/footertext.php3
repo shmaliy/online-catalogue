@@ -1,0 +1,1 @@
+<div class="footerText">&copy; WUTMARC LTD</div>

@@ -1,8 +1,8 @@
 					<table class="advanced" cellspacing="0" cellpadding="5">
 						<tr>
 							<td class="a1" nowrap="nowrap" rowspan="2"><img id="image" src="{#image#}" width="64" height="64" /></td>
-							<td class="a3">Значок</td>
-							<td class="a2"><input type="button" style="width:100%" value="Выбрать" onclick="call('core', '_upload', '{#name#}.image;image@&mode=square_fit&p1=64');" /></td>
+							<td class="a3">Р—РЅР°С‡РѕРє</td>
+							<td class="a2"><input type="button" style="width:100%" value="Р’С‹Р±СЂР°С‚СЊ" onclick="call('core', '_upload', '{#name#}.image;image@&mode=square_fit&p1=64');" /></td>
 						</tr>
 						<tr>
 							<td class="a2" colspan="2"><input type="text" class="text" name="image" value="{#imagepath#}" /></td>
@@ -10,9 +10,9 @@
 					</table>
 					<table class="advanced" cellspacing="0" cellpadding="5">
 						<tr>
-							<td class="a1">Папка</td>
+							<td class="a1">РџР°РїРєР°</td>
 							<td class="a2"><select name="fb_path" class="text" onChange="call('core', '_fb_ed_setpath', ['{#name#}', this.value]);">{#path#}</select></td>
-							<td class="a3"><input type="button" class="w_75" value="обновить" onclick="call('core', '_fb_ed_updfolders', '{#name#}');" /></td>
+							<td class="a3"><input type="button" class="w_75" value="РѕР±РЅРѕРІРёС‚СЊ" onclick="call('core', '_fb_ed_updfolders', '{#name#}');" /></td>
 						</tr>
 					</table>
 					<table class="advanced" cellspacing="0" cellpadding="5">
@@ -33,9 +33,9 @@
 					</table>
 					<table class="advanced" cellspacing="0" cellpadding="5">
 						<tr>
-							<td class="a2" style="width:49%; text-align:center;">Галерея</td>
+							<td class="a2" style="width:49%; text-align:center;">Р“Р°Р»РµСЂРµСЏ</td>
 							<td class="a3"></td>
-							<td class="a1" style="width:49%; text-align:center;">Контент</td>
+							<td class="a1" style="width:49%; text-align:center;">РљРѕРЅС‚РµРЅС‚</td>
 						</tr>
 						<tr>
 							<td class="a2" style="width:49%; text-align:center;"><img id="fb_file" src="/cms/images/blank.png" width="94" height="94" /></td>

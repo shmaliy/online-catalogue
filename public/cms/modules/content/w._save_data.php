@@ -19,13 +19,13 @@
 		$sql = ($params) ? $params->adv_save($data[$this->name], $sql, $this->name) : $sql;
 		
 		$error = array();
-		if ($sql['title'] == ''){ $error[] = 'Поле заголовок не может быть пустым'; }
+		if ($sql['title'] == ''){ $error[] = 'РџРѕР»Рµ Р·Р°РіРѕР»РѕРІРѕРє РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј'; }
 		
 		if (count($error) == 0){
 			if ($id == "new"){
 				$sql['ordering'] = 1;
 				if ($this->insert($sql)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка добавления"); }
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ"); }
 			}else{
 				settype($id,"integer");
 				$element = $this->get($id);
@@ -39,7 +39,7 @@
 					$this->_increment_order($sql['parent_id']);
 				}
 				if ($this->update($sql, $id)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка сохранения"); }
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ"); }
 			}
 		}else{
 			$return[] = array('call', 'message', implode('<br />', $error));

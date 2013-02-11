@@ -1,70 +1,93 @@
 <?php
-require_once 'Zend/Db.php';
-/* Конфигурационный файл */
-$config = array();
 
-/* Пространство имен приложения */
-$config['appnamespace'] = 'Application';
+include('../public/cms/db.php');
 
-/* Настройки ядра PHP */
-$config['phpSettings'] = array(
-    'display_startup_errors' => 1,
-    'display_errors' => 1,
-    'date.timezone' => "Europe/Kiev"
-);
+/**
+ * РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р»
+ */
 
-/* Настройки загрузочного класса */
-$config['bootstrap'] = array(
-    'path' => ROOT_PATH . '/application/Bootstrap.php',
-    'class' => 'Bootstrap'
-);
 
-/* Настройки ресайзера */
-$config['IMAGE_CACHE_LIFETIME'] = 24 * 60 * 60;
+// Р¤РёР·РёС‡РµСЃРєРёР№ РїСѓС‚СЊ Рє РєРѕСЂРЅСЋ СЃР°Р№С‚Р°
+$root = dirname(dirname(dirname(__FILE__)));
+$root .= '/';
 
-/* Настройки ресурсов */
-$config['resources'] = array();
-
-$config['resources']['frontController'] = array(
-	'controllerDirectory' => ROOT_PATH . '/application/controllers',
-	'params' => array(
-		//'displayExceptions' => 1
+//TODO move this into abstract model
+$interface = array(
+	"MORE_NEWS" => array(
+			"ru" => 'РІСЃРµ РЅРѕРІРѕСЃС‚Рё',
+			"en" => 'more news',
+			"de" => 'mehr news',
 	),
-	'moduleDirectory' => ROOT_PATH . '/application/modules',
+	"ALL_JOBS" => array(
+			"ru" => 'РІСЃРµ РІР°РєР°РЅСЃРёРё',
+			"en" => 'all jobs',
+			"de" => 'alle jobs',
+	),
+	"CHOOSE_LANG" => array(
+			"ru" => 'Р’С‹Р±РµСЂРёС‚Рµ СЏР·С‹Рє:',
+			"en" => 'Choose a language:',
+			"de" => 'WГ¤hlen Sie eine Sprache:',
+	),
+	"CHOOSE_SITE" => array(
+			"ru" => 'РЎР°Р№С‚С‹ РєРѕРјРїР°РЅРёРё:',
+			"en" => 'Sites of the company:',
+			"de" => 'Websites des Unternehmens:',
+	)
 );
-
-/* Необходимо для включения модульности (устанавливает пути) */
-$config['resources']['modules'] = array();
-
-/* Настройки корневого шаблона (устанавливает пути, имени файла, типа файла) */
-$config['resources']['layout'] = array(
-	'layoutPath' => ROOT_PATH . '/application/layouts/scripts/',
-	'layout' => 'layout',
-	'viewSuffix' => 'php3'
-);
-
-/* Настройки шаблонизатора */
-$config['resources']['view'] = array(
-	'encoding' => 'windows-1251',
-	'doctype'  => 'XHTML1_TRANSITIONAL',
-	'charset' => 'windows-1251',
-	'contentType' => 'text/html; charset=windows-1251',
-);
-
-/* Настройки баз данных */
-$config['resources']['db'] = array();
-
-include_once '../public/cms/db.php';
-$config['resources']['db']['sound'] = array(
-	'adapter' => 'PDO_MYSQL',
-	'params' => array(
-		'dbname'   => $cms_config_db,
-		'host'     => $cms_config_host,
-		'username' => $cms_config_user, 
-		'password' => $cms_config_password,
-		'profiler' => true,
-   		'driver_options' => array(
-   			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES cp1251'
-   		)
+error_reporting(1);
+// РњР°СЃРёРІ РЅР°СЃС‚СЂРѕРµРє
+$config = array(
+    /*'s_db' => array(
+            'adapter' => 'PDO_SQLITE',
+            'params' => array(
+                'dbname'  => $root . 'data/db/ironsearch_db.db',
+                
+            )
+        ),   
+    */
+	'interface' => $interface,
+    'phpSettings' => array(
+            'display_startup_errors' => 1,
+            'display_errors' => 1,
+            'date.timezone' => "Europe/Kiev"
+    ),
+    'includePaths' => array(
+            'library' => $root . 'library'
+    ),
+    'bootstrap' => array(
+            'path' => $root . 'application/Bootstrap.php',
+            'class' => 'Bootstrap'
+    ),
+    'appnamespace' => 'Application',
+    'resources' => array(
+        'frontController' => array(
+            'controllerDirectory' => $root . 'application/controllers',
+            'params' => array(
+                'displayExceptions' => 1
+            ),
+            'moduleDirectory' => $root . 'application/modules',
+        ),
+        'modules' => array(),
+        'layout' => array(
+            'layoutPath' => $root . 'application/layouts/scripts/',
+            'layout' => 'layout',
+            'viewSuffix' => 'php3'
+        ),
+        'view' => array(
+            'encoding' => 'utf-8',
+        ),
+        'db' => array(
+            'adapter' => 'PDO_MYSQL',
+            'params' => array(
+                'dbname' => $cms_config_db,
+			    'host'     => $cms_config_host,
+			    'username' => $cms_config_user,
+			    'password' => $cms_config_password,
+			    'driver_options' => array(
+					PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+				)
+            )
+        ),
+        
     )
 );

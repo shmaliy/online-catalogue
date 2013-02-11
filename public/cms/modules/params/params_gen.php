@@ -90,7 +90,7 @@ class params_gen extends params_db
 			}
 			return $out;
 		}
-		else return '<tr><td colspan="30">Ïóñòî</td></tr>';		
+		else return '<tr><td colspan="30">ĞŸÑƒÑÑ‚Ğ¾</td></tr>';		
 	}
 	
 	function adv_head($ref){
@@ -233,10 +233,12 @@ class params_gen extends params_db
 				$out .= $this->tpl->assign($tpl, $o);
 			}
 			return $out;
-		}else return '<tr><td>Ïàğàìåòğû íå íàñòğîåíû</td></tr>';
+		}else return '<tr><td>ĞŸĞ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€Ñ‹ Ğ½Ğµ Ğ½Ğ°ÑÑ‚Ñ€Ğ¾ĞµĞ½Ñ‹</td></tr>';
 	}
 	
 	function adv_bottom($ref, $data = NULL){
+		$parent_id = $_SESSION['cms']['mod']['content']['parent'];
+		
 		$list = $this->get_list($ref);
 		if ($list){
 			foreach ($list as $item){
@@ -256,7 +258,7 @@ class params_gen extends params_db
 	function cat_tree($parent, $level, $data){
 		$categories = new categories();
 		$content = new content();
-		//$out .= ($level == 0) ? '<option value="0" class="tab_0">- ÍÅÒ -</option>' : '';
+		//$out .= ($level == 0) ? '<option value="0" class="tab_0">- ĞĞ•Ğ¢ -</option>' : '';
 		$list = $categories->get_list($parent);
 		if ($list){
 			for($i=0; $i<count($list); $i++){
@@ -288,7 +290,7 @@ class params_gen extends params_db
 	function cat_tree2($parent, $level, $data){
 		$categories = new categories();
 		$content = new content();
-		//$out .= ($level == 0) ? '<option value="0" class="tab_0">- ÍÅÒ -</option>' : '';
+		//$out .= ($level == 0) ? '<option value="0" class="tab_0">- ĞĞ•Ğ¢ -</option>' : '';
 		$list = $categories->get_list($parent);
 		if ($list){
 			for($i=0; $i<count($list); $i++){
@@ -310,7 +312,7 @@ class params_gen extends params_db
 							if ($item['id'] == $s){ $out .= ' checked'; }
 						}
 						$out .= '/>'.$item['title'].'<div class="clr"></div></div>';
-						//$out .= $this->cont_tree($list[$i]['id'], $level+1);
+						$out .= $this->cont_tree($list[$i]['id'], $level+1);
 					}
 				}*/
 				

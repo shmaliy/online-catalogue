@@ -58,11 +58,11 @@ class categories extends categories_gen
 	/* ---LIST FUNCTIONS--- */
 	function _publish($id){
 		if (is_array($id)){
-			if ($id[1] == 'null'){return array(array('call', 'message', "Не выбран не один элемент"));}
+			if ($id[1] == 'null'){return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚"));}
 			else{
 				$errors = array();
 				$to = ($id[0] == 'true') ? '1' : '0';
-				$mes = ($id[0] == 'false') ? "Элементы заблокированы" : "Элементы разблокированы";
+				$mes = ($id[0] == 'false') ? "Р­Р»РµРјРµРЅС‚С‹ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅС‹" : "Р­Р»РµРјРµРЅС‚С‹ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅС‹";
 				foreach ($id[1] as $ids){
 					if (!$this->update_e('published', $to, $ids)){$errors[] = $ids;}
 				}
@@ -71,7 +71,7 @@ class categories extends categories_gen
 					$return[] = array('call', 'message', $mes);
 					return $return;
 				}
-				else return array(array('call', 'message', "Ошибка обработки ID: ".implode(', ', $errors)));
+				else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID: ".implode(', ', $errors)));
 			}
 		}else{
 			$published = $this->get($id, 'published');
@@ -126,8 +126,8 @@ class categories extends categories_gen
 	
 	function _copy($data){
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
-			elseif($data[0] == 0){ return array(array('call', 'message', "Выберите категорию"));}
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
+			elseif($data[0] == 0){ return array(array('call', 'message', "Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ"));}
 			else{
 				$errors = array();
 				foreach ($data[1] as $item){
@@ -136,18 +136,18 @@ class categories extends categories_gen
 					$elem['checked_out'] = '0';
 					$elem['checked_out_time'] = '0000-00-00 00:00:00';
 					$elem['ordering'] = 1;
-					if (!$this->insert($elem)){ $errors[] = $item.' (ошибка копирования)'; }
+					if (!$this->insert($elem)){ $errors[] = $item.' (РѕС€РёР±РєР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ)'; }
 				}
 				if (count($errors)==0){
 					$return[] = array('assign', 'ctable_contents', 'innerHTML', $this->_list());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) скопированы');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) СЃРєРѕРїРёСЂРѕРІР°РЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -155,7 +155,7 @@ class categories extends categories_gen
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->tpl->assign("modules/$this->name/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Копирование&close=true';
+				$p[] = 'width=500&height=265&title=РљРѕРїРёСЂРѕРІР°РЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$out['{#tree#}'] = $this->tree(0, 0, $_SESSION['cms']['mod'][$this->name]['parent']);
@@ -167,12 +167,12 @@ class categories extends categories_gen
 	
 	function _move($data){
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
 			else{
 				$errors = array();
 				foreach ($data[1] as $item){
 					$el = $this->get($item);
-					if ($el['checked_out'] != 0){ $errors[] = $item.' (элемент заблокирован)'; }
+					if ($el['checked_out'] != 0){ $errors[] = $item.' (СЌР»РµРјРµРЅС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ)'; }
 					else {
 						$this->update_e('parent_id', $data[0], $item);
 						$this->update_e('ordering', 0, $item);
@@ -187,12 +187,12 @@ class categories extends categories_gen
 					$return[] = array('assign', 'ctable_contents', 'innerHTML', $this->_list());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) перемещены');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) РїРµСЂРµРјРµС‰РµРЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -200,7 +200,7 @@ class categories extends categories_gen
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->tpl->assign("modules/$this->name/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Перемещение&close=true';
+				$p[] = 'width=500&height=265&title=РџРµСЂРµРјРµС‰РµРЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$out['{#tree#}'] = $this->tree(0, 0, $_SESSION['cms']['mod'][$this->name]['parent']);
@@ -212,16 +212,16 @@ class categories extends categories_gen
 	
 	function _delete($data){
 		if ($data[0] != 'confirm'){
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Ошибка обработки")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё")); }
 			else{
 				$errors = array();
 				$content = (class_exists('content', false)) ? new content() : false;
 				foreach ($data[1] as $item){
 					$el = $this->get($item);
-					if ($this->get_list($el['id'])){ $errors[] = $item.' (с подкатегориями нельзя удалить)'; }
-					elseif ($el['checked_out'] != 0){ $errors[] = $item.' (элемент заблокирован)'; }
-					elseif ($content->get_list($el['id'])){ $errors[] = $item.' (с сонтентом нельзя удалить)'; }
-					elseif (!$this->delete($item)){ $errors[] = $item.' (ошибка удаления)'; }
+					if ($this->get_list($el['id'])){ $errors[] = $item.' (СЃ РїРѕРґРєР°С‚РµРіРѕСЂРёСЏРјРё РЅРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ)'; }
+					elseif ($el['checked_out'] != 0){ $errors[] = $item.' (СЌР»РµРјРµРЅС‚ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ)'; }
+					elseif ($content->get_list($el['id'])){ $errors[] = $item.' (СЃ СЃРѕРЅС‚РµРЅС‚РѕРј РЅРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ)'; }
+					elseif (!$this->delete($item)){ $errors[] = $item.' (РѕС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ)'; }
 				}
 				if (count($errors)==0){
 					$parents = $this->get_list();
@@ -231,12 +231,12 @@ class categories extends categories_gen
 					$return[] = array('assign', 'ctable_contents', 'innerHTML', $this->_list());
 					$return[] = array('call', 'modal.hide');
 					$return[] = array('sleep', 10);
-					$return[] = array('call', 'message', 'Элемент(ы) удалены');
+					$return[] = array('call', 'message', 'Р­Р»РµРјРµРЅС‚(С‹) СѓРґР°Р»РµРЅС‹');
 					return $return;
-				}else return array(array('call', 'message', "Ошибка обработки ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
+				}else return array(array('call', 'message', "РћС€РёР±РєР° РѕР±СЂР°Р±РѕС‚РєРё ID:<br />&nbsp;&nbsp;&nbsp;".implode(';<br />', $errors)));
 			}
 		}else{
-			if ($data[1] == 'null'){ return array(array('call', 'message', "Не выбран не один элемент")); }
+			if ($data[1] == 'null'){ return array(array('call', 'message', "РќРµ РІС‹Р±СЂР°РЅ РЅРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚")); }
 			else{
 				foreach ($data[1] as $item){
 					$elem = $this->get($item); 
@@ -244,7 +244,7 @@ class categories extends categories_gen
 					$o['{#title#}'] = ($elem['title_alias'] != '') ? $elem['title'].' ( '.$elem['title_alias'].' ) ' : $elem['title'];
 					$out['{#items#}'] .= $this->tpl->assign("modules/$this->name/table_confirm_row.tpl", $o);
 				}
-				$p[] = 'width=500&height=265&title=Удаление&close=true';
+				$p[] = 'width=500&height=265&title=РЈРґР°Р»РµРЅРёРµ&close=true';
 				$out['{#basedir#}'] =  BASEDIR;
 				$out['{#name#}'] =  $this->name;
 				$p[] = $this->tpl->assign("modules/$this->name/table_confirm_del.tpl", $out);
@@ -262,11 +262,11 @@ class categories extends categories_gen
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Элемент добавлен';
+				$_SESSION['cms']['message'] = 'Р­Р»РµРјРµРЅС‚ РґРѕР±Р°РІР»РµРЅ';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}elseif ($data[$this->name]['db_id'] != 'new'){
 				$this->_check_out($data[$this->name]['db_id'], 'false');
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}
 		}
@@ -279,10 +279,10 @@ class categories extends categories_gen
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Информация сохранена';
+				$_SESSION['cms']['message'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°';
 				$return[] = array('redirect', BASEDIR."/".$this->name."/".mysql_insert_id());
 			}else{
-				$return[] = array('call', 'message', "Информация сохранена");
+				$return[] = array('call', 'message', "РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°");
 			}
 		}
 		return $return;
@@ -303,14 +303,14 @@ class categories extends categories_gen
 		$sql = ($params) ? $params->adv_save($data[$this->name], $sql, $this->name) : $sql;
 		
 		$error = array();
-		if ($sql['title_alias'] == ''){ $error[] = 'Поле псевдоним не может быть пустым'; }
-		if ($sql['title'] == ''){ $error[] = 'Поле заголовок не может быть пустым'; }
+		if ($sql['title_alias'] == ''){ $error[] = 'РџРѕР»Рµ РїСЃРµРІРґРѕРЅРёРј РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј'; }
+		if ($sql['title'] == ''){ $error[] = 'РџРѕР»Рµ Р·Р°РіРѕР»РѕРІРѕРє РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј'; }
 		
 		if (count($error) == 0){
 			if ($id == "new"){
 				$sql['ordering'] = 1;
 				if ($this->insert($sql)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка добавления"); }
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ"); }
 			}else{
 				settype($id,"integer");
 				$element = $this->get($id);
@@ -324,7 +324,7 @@ class categories extends categories_gen
 					$this->_increment_order($sql['parent_id']);
 				}
 				if ($this->update($sql, $id)){$return = 'true';}
-				else { $return[] = array('call', 'message', "Ошибка сохранения"); }
+				else { $return[] = array('call', 'message', "РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ"); }
 			}
 		}else{
 			$return[] = array('call', 'message', implode('<br />', $error));

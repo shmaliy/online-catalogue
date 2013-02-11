@@ -1,36 +1,67 @@
 <?php
 
-class Menu_IndexController extends Sunny_Controller_Action
+class Menu_IndexController extends Zend_Controller_Action
 {
+	private $_model;
+	public $helper;
+	
 	public function init()
     {
-    	$context = $this->_helper->AjaxContext();
-        $context->addActionContext('index', 'json');
-        $context->initContext('json');
-    }
-
-    public function indexAction()
-    {
-    	$request = $this->getRequest();
-    	$params = $request->getParams();
-    	
-    	$alias = $request->getParam('alias', null);
-    	
-    	$menuMapper = new Menu_Model_Mappers_CmsMenu();
-    	
-    	$where = null;
-    	if (!is_null($alias)) {
-    		$where = array('title_alias => ?' => $alias);
-    	}
-    	
-    	$items = $menuMapper->fetchAll();
-    	
-    	echo '<pre>';
-    	var_export($items);
-    	echo '</pre>';
+        $this->_model = new Menu_Model_MenuFrontend();
+        $this->helper = $this->_model->helper;
     }
     
+ 	public function topMenuAction()
+ 	{
+ 		$request = $this->getRequest();
+ 		$params = $request->getParams();
+ 		
+ 		$items = $this->_model->getMenuItems($params['rootAlias'], 'topMenu', '60');
+ 		foreach ($items as &$item) {
+ 			if ($item['title_alias'] == 'production') {
+ 				$item['childs'] = array();
+ 				$item['link'] = '';
+ 				$root = $this->_model->getRootCategoryEntryByAlias('production');
+ 				$tree = $this->_model->prodTree($root['id']);
+ 				//$this->helper->arrayTrans($tree);
+ 				foreach ($tree as $branch) {
+ 					$subsubmenu = array();
+ 					if (!empty($branch['childs']) && isset($branch['childs'])) {
+ 						
+ 						foreach ($branch['childs'] as $child) {
+ 							$subsubmenu[] = array(
+ 							'title' => $child['title'],
+ 							'link' => '/' . Zend_Registry::get('lang') . '/production/' . $branch['title_alias'] . '/' . $child['title_alias'],
+ 							);
+ 						}
+ 					}
+ 					
+ 					$item['childs'][] = array(
+ 						'title' => $branch['title'],
+ 						'link' => '/' . Zend_Registry::get('lang') . '/production/' . $branch['title_alias'],
+ 						'childs' => $subsubmenu
+ 					);
+ 				}
+ 			}
+ 		}
+ 		
+ 		//$this->helper->arrayTrans($items);
+ 		$this->view->items = $items;
+ 	}
+ 	
+ 	public function bottomMenuAction()
+ 	{
+ 		$request = $this->getRequest();
+ 		$params = $request->getParams();
+ 			
+ 		$items = $this->_model->getMenuItems($params['rootAlias'], 'bottomMenu', '60');
+ 		//$this->helper->arrayTrans($items);
+ 		$this->view->items = $items;
+ 	}
+    
+    public function indexAction()
+    {
+
+    } 
+	
 }
-
-
-

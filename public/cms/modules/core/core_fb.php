@@ -49,7 +49,7 @@ class core_fb extends core_mod{
 				$name = ($_SESSION['cms']['fb']['mode'] == 'filebrowser_i')?substr($folder,0,17):$folder;
 				$o['{#name#}'] = $name;
 				$o['{#icon#}'] = BASEDIR."/images/fb/folder_$mode.png";
-				$o['{#size#}'] = 'папка';
+				$o['{#size#}'] = 'РїР°РїРєР°';
 				$out .= $tpl->assign(TPLDIR.'fb_item.tpl',$o);
 			}
 		}
@@ -66,10 +66,10 @@ class core_fb extends core_mod{
 				$o['{#icon#}'] = $this->_file_icon($file,$mode);
 				$size = filesize("$dir/$file");
 				if ($size > 1024 && $size < 1024*1024){
-					$size = round($size/1024, 2)." кб";
+					$size = round($size/1024, 2)." РєР±";
 				}
 				elseif ($size > 1024*1024 && $size < 1024*1024*1024){
-					$size = round($size/(1024*1024), 2)." Мб";
+					$size = round($size/(1024*1024), 2)." РњР±";
 				}
 				$o['{#size#}'] = $size;
 				$out .= $tpl->assign(TPLDIR.'fb_item.tpl',$o);
@@ -82,10 +82,10 @@ class core_fb extends core_mod{
 		$mode = $_SESSION['cms']['fb']['mode'];
 		$icons .= '<option value="filebrowser_i"';
 		$icons .= ($mode == 'filebrowser_i')?' selected="selected"':'';
-		$icons .= '>Значки</option>';
+		$icons .= '>Р—РЅР°С‡РєРё</option>';
 		$list .= '<option value="filebrowser_l"';
 		$list .= ($mode == 'filebrowser_l')?' selected="selected"':'';
-		$list .= '>Список</option>';
+		$list .= '>РЎРїРёСЃРѕРє</option>';
 		return $icons.$list;
 	}
 	

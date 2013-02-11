@@ -1,256 +1,411 @@
 <?php
 
-/*
-* Ïîğÿäîê çàãğóçêè:
-*
-* Bootstrap->__construct()
-* Module_Bootstrap->__construct()
-* Bootstrap->run()
-*
-*/
-
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
-{
-	const MULTIDB_REGISTRY_KEY = 'multidb';
-	
-	public function __construct($application)
+{	
+    public function run()
     {
-    	parent::__construct($application);
-    	$this->preModuleConstruct();
-    	
-    }
-	
-	public function run()
-    {
-    	$this->postModuleConstruct();
-    	
+        try {
+	    	$this->setConfig();	        
+	    	$this->setLoader();	    	
+	    	$this->setModules(); // merge config with modules config           
+	    	$this->setView();
+			$this->setPlugins();
+	        $this->setDbAdapter();	    	
+            $router = $this->setRouter();	    	
+            $front = Zend_Controller_Front::getInstance();            
+            $front->setRouter($router);            
+            //$front->registerPlugin(new Ext_Controller_Plugin_ModuleBootstrap, 1);
+            Zend_Registry::set('interface', $this->_options['interface']);
+            
+        } catch (Exception $e) {
+        	echo $e->getMessage();
+        }
+        
     	parent::run();
     }
-    
-    /* Âûïîëíÿåòñÿ ïåğåä çàãğóçêîé ìîäóëÿ */
-    public function preModuleConstruct()
+	
+	public function setPlugins()
+	{
+		$front = Zend_Controller_Front::getInstance();
+        $front->registerPlugin(new Custom_Controller_Plugin_IEStopper(array('ieversion' => 7)));
+            
+	}
+	
+    public function setConfig()
     {
-    	try {
-    		$this->initConfig();
-    		$this->initAutoloader();
-    		$this->_setAdminConfig();
-    		//$this->initSession();
-    		$this->initLocalization();
-    		$this->initMultiDb();
-    		$this->initRouter();
-    		$this->_setHelpers();
-    		$this->_setDatabases();
-    		//$this->initView();
-    		$this->_setView();
-    	} catch (Exception $e) {
-    		echo $e->getMessage() . '<br /><br />';
-    		echo nl2br($e->getTraceAsString());
-    		exit();
-    	}
+        Zend_Registry::set('options', $this->_options);    	
     }
     
-    /* Âûïîëíÿåòñÿ ïîñëå çàãğóçêîé ìîäóëÿ */
-    public function postModuleConstruct()
-    {
-    	try {
-    		//$this->initView();
-    		$this->_setView();
-    	} catch (Exception $e) {
-    		echo $e->getMessage() . '<br /><br />';
-    		echo nl2br($e->getTraceAsString());
-    		exit();
-    	}
-    }
-    
-    public function initConfig()
-    {
-    	Zend_Registry::set('options', $this->_options);
-    	
-    }
-    
-    protected function _setAdminConfig()
-    {
-    	// Get system options
-    	$options = Zend_Registry::get('options');
-    
-    	// Load admin config
-    	require_once APPLICATION_PATH . '/modules/default/models/Config.php';
-    	$adminConfig = new Default_Model_Config();
-    	$config = $adminConfig->load();
-    	 
-    	// Format options to system config
-    	$multidb = array(
-    			'default' => array(
-    					'default' => true,
-    					'adapter' => 'PDO_MYSQL',
-    					'params'  => array(
-    							'profiler' => array(
-    									'enabled' => true,
-    									'class' => 'Zend_Db_Profiler_Firebug'
-    							),
-    							'dbname'   => $config['dbname'],
-    							'host'     => $config['host'],
-    							'username' => $config['username'],
-    							'password' => $config['password'],
-    							'driver_options' => array(
-    									PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'' . $config['encoding'] . '\''
-    							)
-    					)
-    			)
-    	);
-    	 
-    	// Add to system config
-    	$options['multidb'] = $multidb;
-    	 
-    	// Save to registry
-    	Zend_Registry::set('options', $options);
-    }
-    
-    protected function _setDatabases()
-    {
-    	$options = Zend_Registry::get('options');
-    	$options = $options['multidb'];
-    	 
-    	$adapters = array();
-    	if (!Zend_Registry::isRegistered(self::MULTIDB_REGISTRY_KEY)) {
-    		Zend_Registry::set(self::MULTIDB_REGISTRY_KEY, $adapters);
-    	}
-    	 
-    	// Create adapters
-    	$haveDefault = false;
-    	foreach ($options as $adapterName => $params) {
-    		$params['params']['options']['adapterName'] = $adapterName;
-    		$default = (bool) (isset($params['default']) && $params['default']);
-    
-    		$params['params']['options']['default'] = $default;
-    		$db = Zend_Db::factory($params['adapter'], $params['params']);
-    
-    		$haveDefault = (bool) Zend_Db_Table_Abstract::getDefaultAdapter();
-    		if ($default && false === $haveDefault) {
-    			Zend_Db_Table_Abstract::setDefaultAdapter($db);
-    		} else {
-    			$params['default'] = false;
-    			echo 1;
-    		}
-    
-    		$adapters[$adapterName] = $db;
-    	}
-    	 
-    	// Store back to registry
-    	Zend_Registry::set(self::MULTIDB_REGISTRY_KEY, $adapters);
-    	 
-    }
-    
-	public function initAutoloader()
+    /**
+     * 
+     */
+	public function setLoader()
 	{
 		$autoLoader = Zend_Loader_Autoloader::getInstance();		
 		$autoLoader->setFallbackAutoloader(true);
 	}    
     
-	public function initSession()
-	{
-		/* Äàííûé ìåòîä äîëæåí âûçûâàòüñÿ ïåğåä ëşáûì èñïîëüçîâàíèåì ñåññèé */
-		$frontController = Zend_Controller_Front::getInstance();
-		$request = $frontController->getRequest();
-		
-		if (null === $request) {
-			$request = new Zend_Controller_Request_Http();
-			$frontController->setRequest($request);
-		}
-		
-		$sid = $request->getParam('PHPSESSID');
-		if (!empty($sid)) {
-			Zend_Session::setId($sid);
-		}
-	}
-    
-    public function initLocalization()
-    {
-    	$localization = new Zend_Session_Namespace('Localization');
-    	if (!isset($localization->language)) {
-    		$localization->language = 'ru';
-    	}
-    }
-    
-    public function initMultiDb()
-    {
-	   	$adapters = array();
-    	$options = Zend_Registry::get('options');
-    	
-    	if (!is_array($options['resources']['db'])) { return; }    	
-    	foreach ($options['resources']['db'] as $connectionName => $adapterOptions) {
-    		$adapters[$connectionName] = Zend_Db::factory(
-    			$adapterOptions['adapter'], 
-    			$adapterOptions['params']
-    		);
-    	}
-    	
-    	if (!empty($adapters)) {
-    		Zend_Registry::set('db_adapters', $adapters);
-    	}
-    }
-    
-    public function initRouter()
-    {
-    	/* Íàñòğàèâàòü áàçîâûå ğîóòû çäåñü. Ó ìîäóëåé åñòü ñâîè Bootstrap.php */
-    	$frontController = Zend_Controller_Front::getInstance();
-    	$router = $frontController->getRouter();
-        	
-    	/* Åñëè åñòü ğîóò ïî óìîë÷àíèş - óäàëÿåì */
-    	$router->removeDefaultRoutes();
-    	
-    	/* Ğîóò äëÿ ãëàâíîó ñòğàíèöû */
-    	$router->addRoute('default', new Zend_Controller_Router_Route_Static(
-   	    	'',
-   			array(
-    			'module' => 'default',
-    			'controller' => 'index',
-    			'action' => 'index'
-   			)
-   		));
-    	
-    	$frontController->setRouter($router);
-    }
-    
-//     public function initView()
-//     {
-// 	    /* Íàñòğîéêà ìàğøğóòèçàòîğà */
-//     	$options = Zend_Registry::get('options');
-	    
-// 	    /* Óñòàíîâêà òèïà ôàéëîâ øàáëîíîâ */
-//     	$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
-//         $viewRenderer->setViewSuffix($options['resources']['layout']['viewSuffix']);
-        	    
-// 	    /* Äîáàâëåíèå ïóòåé ïîìîøíèêîâ */
-//     	//$view = $this->getResource('view');
-//     	//$view->addHelperPath('Custom/View/Helper', 'Custom_View_Helper');
-//     }
-    
-    /**
-     * Setup custom layout files suffix
+	/**
+     * 
      */
-    protected function _setView()
-    {
-    	$options = $this->getOptions();
-    	$frontController = Zend_Controller_Front::getInstance();
-    	Zend_Registry::set('lang', 'default');
-    	
-    	// Set templates suffix
-    	$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
-    	$viewRenderer->setViewSuffix($options['resources']['layout']['viewSuffix']);
-    
-    	// Add custom view helpers paths
-      }
-    
-    protected function _setHelpers()
-    {
-    	//$loader = Zend_Controller_Action_HelperBroker::getPluginLoader();
-    	//$loader->addPrefixPath('Sunny_Controller_Action_Helper', 'Sunny/Controller/Action/Helper/');
-    	//Zend_Controller_Action_HelperBroker::setPluginLoader($loader);
-    	 
-    	$helper = new Sunny_Controller_Action_Helper_ArrayTrans();
-    	Zend_Controller_Action_HelperBroker::addHelper($helper);
-    	//Zend_Controller_Action_HelperBroker::getStack()->offsetSet(null, $helper);
-    }
+	public function setView()
+	{
+	    $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
+        $viewRenderer->setViewSuffix('php3');
+				
+		$layout = Zend_Layout::getMvcInstance();
+		$url = parse_url($_SERVER['REQUEST_URI']);
+		$url = $url['path'];
+		$url = trim($url, '/');
+		$url = explode('/', $url);
+		
+		if($url[0] == 'admin'){
+			$layout->setLayout('admin');
+		} else {
+			$layout->setLayout('layout');
+		}
+	}    
+
+	public function setDbAdapter()
+	{
+		$db = Zend_Db::factory(new Zend_Config($this->_options['resources']['db']));
+		Zend_Db_Table_Abstract::setDefaultAdapter($db);
+		Zend_Registry::set('db', $db);
+		$db->getConnection();
+	}
+	
+	public function setRouter()
+	{
+	    $router = new Zend_Controller_Router_Rewrite();
+	    //$router->removeDefaultRoutes();
+	    
+	    $path = parse_url($_SERVER['REQUEST_URI']);
+	    $path = $path['path'];
+	    $path = explode('/', trim($path, '/'));
+	    if(empty($path[0])){
+	    	$lang = 'de';
+	    } else {
+	    	$lang = $path[0];
+	    }
+	    Zend_Registry::set('lang', $lang);
+	    include('classes/interface_lang/' . $lang . '.php');
+	    
+	    $cache = parse_ini_file('cache.ini');
+	    Zend_Registry::set('cache', $cache['cache']);
+	    
+	  	//session_start();
+	   
+	    
+        
+	    /*  ĞœĞ½Ğ¾Ğ³Ğ¾ÑĞ·Ñ‹Ñ‡Ğ½Ğ¾ÑÑ‚ÑŒ Ğ½Ğ° Ğ³Ğ»Ğ°Ğ²Ğ½Ğ¾Ğ¹  */
+	    $route = new Zend_Controller_Router_Route_Regex(
+	    	'[a-z]{2}',
+	    	array(
+	    		'module' => 'default',
+	    	    'controller' => 'index',
+	    	    'action'     => 'index',
+	    		'lang' => $lang
+	    	)
+	    );
+	    $router->addRoute('index', $route);
+	    /*-----------------------------*/
+	    
+	    /*  ĞšĞ¾Ğ½Ñ‚Ğ°ĞºÑ‚Ğ½Ğ°Ñ Ğ¸Ğ½Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ†Ğ¸Ñ  */
+	    $route = new Zend_Controller_Router_Route(
+	    	':lang/contacts',
+	    	array(
+	    	  	'module' => 'content',
+	    	    'controller' => 'new-index',
+	    	    'action'     => 'contacts',
+	    		'lang' => $lang,
+	        	'cat-alias' => 'contacts'
+	    	)
+	    );
+	    $router->addRoute('contacts', $route);
+	    
+	    
+	    /*  ĞŸĞ¾Ğ¸ÑĞº Ğ¼Ğ°Ñ‚ĞµÑ€Ğ¸Ğ°Ğ»Ğ¾Ğ²  */
+	    $route = new Zend_Controller_Router_Route(
+	    	':lang/product-search',
+	    	array(
+	    	  	'module' => 'production',
+	    	    'controller' => 'index',
+	    	    'action'     => 'select-by-other-brand',
+	    		'lang' => $lang
+	    	)
+	    );
+	    $router->addRoute('product-search', $route);
+	    
+	    /*  ĞĞ±Ğ»Ğ°ÑÑ‚Ğ¸ Ğ¿Ñ€Ğ¸Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+	    $route = new Zend_Controller_Router_Route(
+	    	':lang/deliveryforms.html',
+	    	array(
+	        	'module' => 'content',
+	    	    'controller' => 'new-index',
+	    	    'action'     => 'static-content-item',
+	    		'lang' => $lang,
+        		'2' => 'deliveryforms'
+	    	)
+	    );
+	    $router->addRoute('deliveryforms', $route);
+        
+		/* Ğ¡Ñ‚Ğ°Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¸Ğ¹ ĞºĞ¾Ğ½Ñ‚ĞµĞ½Ñ‚ */
+		$route = new Zend_Controller_Router_Route_Regex(
+        	'([^.]+)+\/([^.]+).html',
+        	array(
+	            'module' => 'content',
+	    	   	'controller' => 'new-index',
+	    	   	'action'     => 'static-content-item',
+				'lang' => $lang
+            )
+        );
+        $router->addRoute('static', $route);
+        
+        
+        
+        
+        /*  ĞĞ¾Ğ²Ğ¾ÑÑ‚Ğ¸ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/news',
+        	array(
+            	'module' => 'content',
+                'controller' => 'new-index',
+                'action'     => 'news-index',
+        		'lang' => $lang,
+        		'alias' => 'news'
+       		)
+        );
+        $router->addRoute('news-index', $route);
+        
+        /*  ĞĞ¾Ğ²Ğ¾ÑÑ‚Ğ¸ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/news/:id',
+        	array(
+            	'module' => 'content',
+                'controller' => 'new-index',
+                'action'     => 'news-item',
+                'lang' => $lang
+        	)
+        );
+        $router->addRoute('news-item', $route);
+        
+        /*  Ajax news  */
+        $route = new Zend_Controller_Router_Route(
+        	'content/new-index/last-news/*',
+        	array(
+               	'module' => 'content',
+                'controller' => 'new-index',
+                'action'     => 'last-news',
+            )
+        );
+        $router->addRoute('ajax-last-news', $route);
+        
+        /*  Ajax support  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/support',
+        	array(
+               	'module' => 'default',
+                'controller' => 'index',
+                'action'     => 'support',
+        		'lang' => $lang
+        	)
+        );
+        $router->addRoute('ajax-support', $route);
+        
+        /*  Ajax news  */
+        $route = new Zend_Controller_Router_Route(
+        	'content/new-index/last-reference/*',
+        	array(
+            	'module' => 'content',
+                'controller' => 'new-index',
+               	'action'     => 'last-reference',
+        	)
+        );
+        $router->addRoute('ajax-last-ref', $route);
+        
+        
+        /*  ĞĞ±Ğ»Ğ°ÑÑ‚Ğ¸ Ğ¿Ñ€Ğ¸Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/areas_of_use',
+	        array(
+	        	'module' => 'content',
+	            'controller' => 'new-index',
+	            'action'     => 'areas-of-use-index',
+	            'lang' => $lang,
+	            'alias' => 'areas_of_use'
+	        )
+        );
+        $router->addRoute('areas-of-use-index', $route);
+        
+        /*  ĞĞ±Ğ»Ğ°ÑÑ‚Ğ¸ Ğ¿Ñ€Ğ¸Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/areas_of_use/:id',
+        	array(
+        	   	'module' => 'content',
+        	    'controller' => 'new-index',
+        	    'action'     => 'areas-item',
+        	    'lang' => $lang,
+        	    'alias' => 'areas_of_use'
+        	)
+        );
+        $router->addRoute('areas-of-use-item', $route);
+        
+
+        
+        
+        /*  Ğ¡Ğ¿Ñ€Ğ°Ğ²ĞºĞ° Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/reference',
+        	array(
+        		'module' => 'content',
+        	    'controller' => 'new-index',
+        	    'action'     => 'reference-category',
+        	    'lang' => $lang,
+        	    'alias' => 'reference'
+        	)
+        );
+        $router->addRoute('reference-category', $route);
+        
+        /*  Ğ¤Ğ¾Ñ€Ğ¼Ñ‹ Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²ĞºĞ¸ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/forms-of-supply',
+        	array(
+            	'module' => 'default',
+                'controller' => 'index',
+                'action'     => 'index',
+                'lang' => $lang,
+                'alias' => 'reference'
+        	)
+        );
+        $router->addRoute('forms-of-supply-category', $route);
+        
+        /*  Ğ¤Ğ¾Ñ€Ğ¼Ñ‹ Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²ĞºĞ¸ Ğ¿Ñ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/forms-of-supply/:id',
+        	array(
+              	'module' => 'default',
+                'controller' => 'index',
+                'action'     => 'index',
+                'lang' => $lang,
+                'alias' => 'reference'
+        	)
+        );
+        $router->addRoute('forms-of-supply-view', $route);
+        
+        /*  Ğ¡Ğ¿Ñ€Ğ°Ğ²ĞºĞ° Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/reference/:cat',
+        	array(
+            	'module' => 'content',
+                'controller' => 'new-index',
+                'action'     => 'reference-index',
+            	'lang' => $lang,
+                'alias' => 'reference'
+        	)
+        );
+        $router->addRoute('reference-index', $route);
+        
+        /*  ĞĞ¾Ğ²Ğ¾ÑÑ‚Ğ¸ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/reference/:cat/:id',
+        	array(
+               	'module' => 'content',
+                'controller' => 'new-index',
+                'action'     => 'reference-item',
+                'lang' => $lang
+        	)
+        );
+        $router->addRoute('reference-item', $route);
+        
+        
+        /*  ĞŸÑ€Ğ¾Ğ´ÑƒĞºÑ†Ğ¸Ñ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ°Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/production',
+       		array(
+            	'module' => 'production',
+                'controller' => 'index',
+                'action'     => 'index',
+                'lang' => $lang,
+                'alias' => 'production'
+        	)
+        );
+        $router->addRoute('production-index', $route);
+        
+        /*  ĞŸÑ€Ğ¾Ğ´ÑƒĞºÑ†Ğ¸Ñ Ğ¿Ğ¾Ğ´ĞºĞ°Ñ‚ĞµĞ³Ğ¾Ñ€Ğ¸Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/production/:cat_alias/:subcat_alias',
+        	array(
+              	'module' => 'production',
+               	'controller' => 'index',
+                'action'     => 'category',
+                'lang' => $lang,
+                'alias' => 'production'
+        	)
+        );
+        $router->addRoute('production-index-subcat', $route);
+        
+        /*  ĞŸÑ€Ğ¾Ğ´ÑƒĞºÑ†Ğ¸Ñ ĞºĞ°Ñ‚ĞµĞ³Ğ¾Ñ€Ğ¸Ñ  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/production/:cat_alias',
+        	array(
+               	'module' => 'production',
+            	'controller' => 'index',
+                'action'     => 'category',
+                'lang' => $lang,
+                'alias' => 'production',
+        		'cat-alias' => $cat_alias
+        	)
+        );
+        $router->addRoute('production-index-cat', $route);
+        
+        
+        
+        
+        /*  Ğ£Ğ¿Ñ€Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ ĞºĞµÑˆĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸ĞµĞ¼*/
+        $route = new Zend_Controller_Router_Route(
+        	':lang/cachemanager/:mode',
+        array(
+        	'module' => 'default',
+        	'controller' => 'index',
+        	'action'     => 'cache-manager',
+				'lang' => $lang
+        	)
+        );
+        $router->addRoute('cache-manager-mode', $route);
+        
+        $route = new Zend_Controller_Router_Route(
+        	':lang/cachemanager',
+        	array(
+               	'module' => 'default',
+               	'controller' => 'index',
+               	'action'     => 'cache-manager',
+				'lang' => $lang
+        	)
+        );
+        $router->addRoute('cache-manager', $route);
+        
+        /*-------------------------*/
+        
+        /*  ĞÑĞºÑĞ¾Ğ²Ğ¾Ğµ Ğ¿Ğ¾Ğ»ÑƒÑ‡ĞµĞ½Ğ¸Ğµ Ğ½Ğ¾Ğ²Ğ¾ÑÑ‚ĞµĞ¹ */
+        
+        $route = new Zend_Controller_Router_Route(
+        	'ajax_news/:lang/:page',
+	        array(
+				'module' => 'default',
+	        	'controller' => 'index',
+	        	'action'     => 'indexnews',
+	    		'lang' => $lang
+	        )
+        );
+        $router->addRoute('ajax_news', $route);
+        
+	    return $router;
+	}
+	
+	public function setModules()
+	{
+	    //$modules = new Ext_Modules_Load();
+    	//Zend_Registry::set('modules', $modules->getList());
+	}
 }
 

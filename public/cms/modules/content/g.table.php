@@ -16,7 +16,7 @@
 			foreach ($list as $i){
 				foreach ($i as $f => $v){ $r["{#$f#}"] = $v; }
 				$r['{#title#}'] = ($i['title_alias'] != '') ? $i['title'].' ( '.$i['title_alias'].' )' : $i['title'];
-				$r['{#parent_id#}'] = ($i['parent_id'] != 0) ? $categories->get($i['parent_id'], 'title') : '- ÍÅÒ -';
+				$r['{#parent_id#}'] = ($i['parent_id'] != 0) ? $categories->get($i['parent_id'], 'title') : '- ĞĞ•Ğ¢ -';
 				$r['{#published#}'] = ($i['published'] == 1) ? '<img src="'.BASEDIR.'/images/adm/tick.png" />' : '<img src="'.BASEDIR.'/images/adm/publish_x.png" />';
 				if ($i['checked_out'] == 0){
 					$r['{#checked_out#}'] = '<input name="'.$i['id'].'" type="checkbox"></td>';
@@ -40,7 +40,7 @@
 				$o['{#items#}'] .= $this->core->tpl->assign("modules/$this->name/tpl/table_row.tpl", $r);
 				$c++;
 			}
-		}else { $o['{#items#}'] = '<tr><td colspan="30">Ïóñòî</td></tr>'; }
+		}else { $o['{#items#}'] = '<tr><td colspan="30">ĞŸÑƒÑÑ‚Ğ¾</td></tr>'; }
 		$o['{#basedir#}'] = BASEDIR;
 		$o['{#name#}'] = $this->name;
 		$o['{#navigator#}'] = $this->_navigator();

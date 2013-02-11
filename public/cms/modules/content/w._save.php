@@ -5,11 +5,11 @@
 		if ($return == 'true'){
 			$return = array();
 			if ($data[$this->name]['db_id'] == 'new'){
-				$_SESSION['cms']['message'] = 'Ýëåìåíò äîáàâëåí';
+				$_SESSION['cms']['message'] = 'Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}elseif ($data[$this->name]['db_id'] != 'new'){
 				$this->_check_out($data[$this->name]['db_id'], 'false');
-				$_SESSION['cms']['message'] = 'Èíôîðìàöèÿ ñîõðàíåíà';
+				$_SESSION['cms']['message'] = 'Ð˜Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð°';
 				$return[] = array('redirect', BASEDIR."/".$this->name);
 			}
 		}
