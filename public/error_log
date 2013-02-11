@@ -1,0 +1,22 @@
+[21-Dec-2011 15:37:19] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO)' in /home1/shmaliym/phpLibs/Zend/Db/Adapter/Pdo/Abstract.php:129
+Stack trace:
+#0 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Pdo/Abstract.php(129): PDO->__construct('mysql:dbname=sh...', 'root', '', Array)
+#1 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Pdo/Mysql.php(96): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Abstract.php(858): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Abstract.php(928): Zend_Db_Adapter_Abstract->quote('mainmenu_ru', NULL)
+#4 /home1/shmaliym/phpLibs/Zend/Db/Select.php(1000): Zend_Db_Adapter_Abstract->quoteInto('`root`.`title_a...', 'mainmenu_ru', NULL)
+#5 /home1/shmaliym/phpLibs/Zend/Db/Select.php(475): Zend_Db_Select->_where('`root`.`title_a...', 'mainmenu_ru', NULL, true)
+#6 /home1/shmaliym/public_html/www.soundwind/application/models/Menu.php(39): Zend_Db_Select->where('`root`.`title in /home1/shmaliym/phpLibs/Zend/Db/Adapter/Pdo/Abstract.php on line 144
+[21-Dec-2011 15:43:43] PHP Warning:  include_once(Custom/Controller/Router/Route/Content.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home1/shmaliym/phpLibs/Zend/Loader.php on line 146
+[21-Dec-2011 15:43:43] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening 'Custom/Controller/Router/Route/Content.php' for inclusion (include_path='/home1/shmaliym/phpLibs:.:/usr/lib64/php:/usr/lib/php:/usr/share/pear') in /home1/shmaliym/phpLibs/Zend/Loader.php on line 146
+[21-Dec-2011 15:43:43] PHP Fatal error:  Class 'Custom_Controller_Router_Route_Content' not found in /home1/shmaliym/public_html/www.soundwind/application/modules/default/Bootstrap.php on line 42
+[26-Sep-2012 07:55:52] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home1/shmaliym/phpLibs/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home1/shmaliym/phpLibs/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home1/shmaliym/phpLibs/Zend/Db/Statement.php(320): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Abstract.php(479): Zend_Db_Statement->execute(Array)
+#3 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query(Object(Zend_Db_Select), Array)
+#4 /home1/shmaliym/phpLibs/Zend/Db/Adapter/Abstract.php(734): Zend_Db_Adapter_Pdo_Abstract->query(Object(Zend_Db_Select), Array)
+#5 /home1/shmaliym/public_html/www.soundwind/application/models/Menu.php(47): Zend_Db_Adapter_Abstract->fetchAll(Object(Zend_Db_Select))
+#6 /home1/shmaliym/public_html/www.soundwind/application/modules/default/controllers/IndexController.php(34): Application_Model_Menu->getByAlias('mainmenu')
+#7 /home1/s in /home1/shmaliym/phpLibs/Zend/Db/Statement/Pdo.php on line 234

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/punbb/punbb/!svn/ver/128/trunk/Russian/mail_templates
+END
+activate_password.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/punbb/punbb/!svn/ver/73/trunk/Russian/mail_templates/activate_password.tpl
+END
+new_reply.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/punbb/punbb/!svn/ver/73/trunk/Russian/mail_templates/new_reply.tpl
+END
+new_reply_full.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/punbb/punbb/!svn/ver/73/trunk/Russian/mail_templates/new_reply_full.tpl
+END
+activate_email.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/punbb/punbb/!svn/ver/73/trunk/Russian/mail_templates/activate_email.tpl
+END
+form_email.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/punbb/punbb/!svn/ver/73/trunk/Russian/mail_templates/form_email.tpl
+END
+welcome.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/punbb/punbb/!svn/ver/128/trunk/Russian/mail_templates/welcome.tpl
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/punbb/punbb/!svn/ver/14/trunk/Russian/mail_templates/index.html
+END
