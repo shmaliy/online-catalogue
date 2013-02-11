@@ -23,7 +23,7 @@ class Menu_IndexController extends Sunny_Controller_Action
     		$where = array('title_alias => ?' => $alias);
     	}
     	
-    	$items = $menuMapper->fetchTree($where, array('parent_id'), 'ordering');
+    	$items = $menuMapper->fetchAll();
     	
     	echo '<pre>';
     	var_export($items);
