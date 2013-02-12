@@ -9,13 +9,22 @@ class IndexController extends Sunny_Controller_Action
 
     public function indexAction()
     {
+    	
+    }
+    
+    public function presentationAction()
+    {
     	$mapper = new Content_Model_Mapper_Cmscontent();
     	
-    	echo '<pre>';
-    	var_export($mapper->fetchAll());
-    	echo '</pre>';
-    	$request = $this->getRequest();
-    	$params = $request->getParams();
+    	$item = $mapper->fetchRow(
+    		array(
+    			"title_alias = ?" => 'presentation',
+    			"parent_id = 0",
+    			"published = 1"		
+    		)		
+    	);
+    	
+    	$this->view->item = $item;
     }
     
 }

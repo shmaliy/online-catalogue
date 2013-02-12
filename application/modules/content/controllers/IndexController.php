@@ -2,13 +2,143 @@
 
 class Content_IndexController extends Sunny_Controller_Action
 {
-   public function init()
-   {
+	public function init()
+	{
    
-   }
+	}
     
     public function indexAction()
     {
         
-	}   
+	}  
+
+	public function seoAction()
+	{
+		$mapper = new Content_Model_Mapper_Cmscontent();
+		 
+		$item = $mapper->fetchRow(
+				array(
+						"title_alias = ?" => 'seo',
+						"parent_id = 0",
+						"published = 1"
+				)
+		);
+		 
+		$this->view->item = $item;
+	}
+	
+	public function lastNewsAction()
+	{
+		
+	}
+	
+	public function staticAction()
+	{
+		$request = $this->getRequest();
+		$params = $request->getParams();
+		
+// 		echo '<pre>';
+// 		var_export($params);
+// 		echo '</pre>';
+		
+		$parentId = 0;
+		if ($params['mode'] == 'cat') {
+			$catMapper = new Content_Model_Mapper_Cmscategories();
+			$path = explode('/', $params['path']);
+			foreach ($path as $cat) {
+				$where = array(
+					"title_alias = ?" => $cat,
+					"parent_id = ?" => $parentId,
+					"published = 1",
+				);
+				$catItem = $catMapper->fetchRow($where);
+				
+				if(!is_null($catItem)) {
+					$parentId = $catItem->id;
+				} else {
+					break;
+				}
+			}
+		}
+		
+		
+		$mapper = new Content_Model_Mapper_Cmscontent();
+		
+		$where = array(
+			"parent_id = ?" => $parentId,
+			"published = 1",
+			"title_alias = ?" => $params['alias']		
+		);
+		
+		$item = $mapper->fetchRow($where);
+		
+		$this->view->item = $item;
+		
+	}
+	
+	public function makeRender($params)
+	{
+		return '../application/modules/' . $params['module'] . '/views/scripts/' . $params['controller']; 
+	}
+	
+	public function dynamicListAction()
+	{
+		$request = $this->getRequest();
+		$params = $request->getParams();
+		
+// 		echo '<pre>';
+// 		var_export($params);
+// 		echo '</pre>';
+		
+		$parentId = 0;
+		$this->view->pTitle = '';
+		
+		$catMapper = new Content_Model_Mapper_Cmscategories();
+		$path = explode('/', $params['path']);
+		foreach ($path as $cat) {
+			$where = array(
+					"title_alias = ?" => $cat,
+					"parent_id = ?" => $parentId,
+					"published = 1",
+			);
+			$catItem = $catMapper->fetchRow($where);
+	
+			if(!is_null($catItem)) {
+				$parentId = $catItem->id;
+				$this->view->pTitle = $catItem->title;
+				
+				// Получить список подкатегорий и вкатить их перед списком контента
+				
+				
+				
+			} else {
+				break;
+			}
+		}
+				
+		$mapper = new Content_Model_Mapper_Cmscontent();
+		
+		$where = array(
+				"parent_id = ?" => $parentId,
+				"published = 1"
+		);
+		
+		$items = $mapper->fetchAll($where, 'ordering');
+		
+// 		echo '<pre>';
+// 		var_export($items);
+// 		echo '</pre>';
+		
+		$this->view->items = $items;
+		$this->view->path = $params['path'];
+		
+		
+		$alternate = $this->makeRender($params) . '/' . $path[count($path)-1] . '.php3';
+		
+		if (is_file($alternate)) {
+			$this->render($path[count($path)-1]);
+		}
+		
+		
+	}
 }

@@ -136,7 +136,57 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 // 	    );
 // 	    $router->addRoute('contacts', $route);
 	    
+	    $router->addRoute(
+	    		'dynamic_list',
+	    		new Zend_Controller_Router_Route_Regex(
+    				'([a-zA-Z\/]*)',
+    				array(
+    						'module' => 'content',
+    						'controller' => 'index',
+    						'action' => 'dynamic-list',
+    						'path' => '',
+    				),
+    				array(
+    						1 => 'path',
+    				),
+    				'%s'
+	    ));
 	    
+	    $router->addRoute(
+	    		'cat_static', 
+	    		new Zend_Controller_Router_Route_Regex(
+	    			'([a-zA-Z0-9\/]*)/([a-zA-Z0-9]*).html',
+		    		array(
+		    				'module' => 'content',
+		    				'controller' => 'index',
+		    				'action' => 'static',
+		    				'mode' => 'cat',
+		    				'path' => '',
+		    				'alias' => ''
+		    		),
+		    		array(
+		    				1 => 'path',
+		    				2 => 'alias'
+		    		),
+	    			'%s/%s'
+	    ));
+	    
+	    $router->addRoute(
+	    		'static',
+	    		new Zend_Controller_Router_Route_Regex(
+    				'([a-zA-Z0-9]*).html',
+    				array(
+    						'module' => 'content',
+    						'controller' => 'index',
+    						'action' => 'static',
+    						'mode' => 'root',
+    						'alias' => ''
+    				),
+    				array(
+    					1 => 'alias'
+    				),
+    				'%s'
+    	));
 	    
         
 	    return $router;
