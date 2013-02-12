@@ -1,5 +1,5 @@
 <div class="static">
-	<div class="static-title"><?php echo $this->item->title;?></div>
+	<h1><?php echo $this->item->title;?></h1>
 	
 	<?php if ($this->item->introtext != '') : ?>
 	<div class="static-text"><?php echo $this->item->introtext;?></div>

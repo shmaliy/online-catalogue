@@ -109,37 +109,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	public function setRouter()
 	{
 	    $router = new Zend_Controller_Router_Rewrite();
+	    //$router->removeDefaultRoutes();
 
-// 	    /*  Многоязычность на главной  */
-// 	    $route = new Zend_Controller_Router_Route_Regex(
-// 	    	'[a-z]{2}',
-// 	    	array(
-// 	    		'module' => 'default',
-// 	    	    'controller' => 'index',
-// 	    	    'action'     => 'index',
-// 	    		'lang' => $lang
-// 	    	)
-// 	    );
-// 	    $router->addRoute('index', $route);
-// 	    /*-----------------------------*/
-	    
-// 	    /*  Контактная информация  */
-// 	    $route = new Zend_Controller_Router_Route(
-// 	    	':lang/contacts',
-// 	    	array(
-// 	    	  	'module' => 'content',
-// 	    	    'controller' => 'new-index',
-// 	    	    'action'     => 'contacts',
-// 	    		'lang' => $lang,
-// 	        	'cat-alias' => 'contacts'
-// 	    	)
-// 	    );
-// 	    $router->addRoute('contacts', $route);
+	    $route = new Zend_Controller_Router_Route (
+	    	'',
+	    	array(
+	    		'module' => 'default',
+	    	    'controller' => 'index',
+	    	    'action'     => 'index',
+	    	)
+	    );
+	    $router->addRoute('index', $route);
+
 	    
 	    $router->addRoute(
 	    		'dynamic_list',
 	    		new Zend_Controller_Router_Route_Regex(
-    				'([a-zA-Z\/]*)',
+    				'([a-zA-Z\/]+)',
     				array(
     						'module' => 'content',
     						'controller' => 'index',
