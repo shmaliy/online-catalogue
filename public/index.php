@@ -14,8 +14,8 @@ if (!defined('APPLICATION_PATH')) {
 
 /* Каталог библиотек ZEND */
 if (!defined('LIBRARY_PATH')) {
-	if (file_exists(realpath(ROOT_PATH . '/../..') . '/phpLibs')) {
-		define('LIBRARY_PATH', realpath(ROOT_PATH . '/../..' . '/phpLibs'));
+	if (file_exists(realpath(ROOT_PATH . '/..') . '/zend')) {
+		define('LIBRARY_PATH', realpath(ROOT_PATH . '/..' . '/zend'));
 	} else {
 		define('LIBRARY_PATH', realpath(ROOT_PATH . '/library'));
 	}

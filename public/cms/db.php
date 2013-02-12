@@ -8,7 +8,7 @@ $cms_config_db = 'u2714_wt';
 $cms_config_host = 'localhost';
 $cms_config_user = 'root';
 $cms_config_password = '';
-$cms_config_db = 'u2714_wt';
+$cms_config_db = 'shmaliym_cat';
 
 $cms_config_dbprefix = 'cms';
 ?>
