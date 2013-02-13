@@ -120,7 +120,8 @@ class Content_IndexController extends Sunny_Controller_Action
 		
 		$where = array(
 				"parent_id = ?" => $parentId,
-				"published = 1"
+				"published = 1",
+				"title_alias = ?" => ''
 		);
 		
 		$items = $mapper->fetchAll($where, 'ordering');

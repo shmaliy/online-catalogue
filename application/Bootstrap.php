@@ -23,7 +23,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         } catch (Exception $e) {
         	echo $e->getMessage();
         }
-        
+        //Zend_Registry::set('lang', 'default');
     	parent::run();
     }
     
@@ -53,7 +53,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
 	public function setView()
 	{
-	    $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
+		// Add custom view helpers paths
+		$view = $this->getResource('view');
+		$view->addHelperPath('Sunny/View/Helper', 'Sunny_View_Helper');
+		$view->addHelperPath('Core/View/Helper', 'Core_View_Helper');
+		$view->addHelperPath('Core/Image/View/Helper', 'Core_Image_View_Helper');
+		
+		$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setViewSuffix('php3');
 				
 		$layout = Zend_Layout::getMvcInstance();
@@ -61,6 +67,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$url = $url['path'];
 		$url = trim($url, '/');
 		$url = explode('/', $url);
+		
 		
 		if($url[0] == 'admin'){
 			$layout->setLayout('admin');
@@ -182,6 +189,25 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 	    //$modules = new Ext_Modules_Load();
     	//Zend_Registry::set('modules', $modules->getList());
+	}
+	
+	
+	/**
+	* Setup custom layout files suffix
+	*/
+	protected function _setView()
+	{
+		$options = $this->getOptions();
+		
+		// Add custom view helpers paths
+		$view = $this->getResource('view');
+		$view->addHelperPath('Sunny/View/Helper', 'Sunny_View_Helper');
+		$view->addHelperPath('Core/View/Helper', 'Core_View_Helper');
+		$view->addHelperPath('Core/Image/View/Helper', 'Core_Image_View_Helper');
+		
+		// Set templates suffix
+		$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
+		$viewRenderer->setViewSuffix($options['resources']['layout']['viewSuffix']);
 	}
 }
 

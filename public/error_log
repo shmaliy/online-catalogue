@@ -1,0 +1,6 @@
+[13-Feb-2013 09:33:23] PHP Fatal error:  Class 'Custom_Controller_Plugin_IEStopper' not found in W:\home\online-catalogue\application\Bootstrap.php on line 33
+[13-Feb-2013 09:33:23] PHP Fatal error:  Class 'Custom_Controller_Plugin_IEStopper' not found in W:\home\online-catalogue\application\Bootstrap.php on line 33
+[13-Feb-2013 09:33:23] PHP Fatal error:  Class 'Custom_Controller_Plugin_IEStopper' not found in W:\home\online-catalogue\application\Bootstrap.php on line 33
+[13-Feb-2013 09:33:44] PHP Fatal error:  Call to a member function test() on a non-object in W:\home\zend\Sunny\Controller\Action.php on line 115
+[13-Feb-2013 09:37:27] PHP Fatal error:  Call to a member function test() on a non-object in W:\home\zf\Sunny\Controller\Action.php on line 115
+[13-Feb-2013 09:38:07] PHP Fatal error:  Call to a member function test() on a non-object in W:\home\zf\Sunny\Controller\Action.php on line 132

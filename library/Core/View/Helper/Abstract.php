@@ -4,12 +4,10 @@ require_once "Zend/View/Helper/Abstract.php";
 
 class Core_View_Helper_Abstract extends Zend_View_Helper_Abstract
 {
-	protected $_lang;
 	protected $_resizer;
     
     public function __construct()
     {
-    	$this->_lang = Zend_Registry::get('lang');
     	$this->_resizer = new Sunny_ImageResizer();
         
         require_once 'Zend/Controller/Action/HelperBroker.php';
