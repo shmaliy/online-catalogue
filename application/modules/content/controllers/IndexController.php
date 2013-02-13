@@ -95,6 +95,7 @@ class Content_IndexController extends Sunny_Controller_Action
 		
 		$catMapper = new Content_Model_Mapper_Cmscategories();
 		$path = explode('/', $params['path']);
+		$this->view->path = $params['path'];
 		foreach ($path as $cat) {
 			$where = array(
 					"title_alias = ?" => $cat,
@@ -106,6 +107,7 @@ class Content_IndexController extends Sunny_Controller_Action
 			if(!is_null($catItem)) {
 				$parentId = $catItem->id;
 				$this->view->pTitle = $catItem->title;
+				$this->view->pId = $catItem->id;
 				
 				// Получить список подкатегорий и вкатить их перед списком контента
 				
@@ -127,17 +129,17 @@ class Content_IndexController extends Sunny_Controller_Action
 		$items = $mapper->fetchAll($where, 'ordering');
 		
 // 		echo '<pre>';
-// 		var_export($items);
+// 		var_export($path);
 // 		echo '</pre>';
 		
 		$this->view->items = $items;
 		$this->view->path = $params['path'];
 		
 		
-		$alternate = $this->makeRender($params) . '/' . $path[count($path)-1] . '.php3';
+		$alternate = $this->makeRender($params) . '/' . $path[0] . '.php3';
 		
 		if (is_file($alternate)) {
-			$this->render($path[count($path)-1]);
+			$this->render($path[0]);
 		}
 		
 		
