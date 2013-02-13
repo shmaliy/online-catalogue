@@ -8,9 +8,4 @@ class Core_View_Helper_Content extends Core_View_Helper_Abstract
 	{
 		return $this;
 	}
-
-	public function test()
-	{
-		echo 1212121212;
-	}
 }
