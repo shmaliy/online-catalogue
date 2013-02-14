@@ -1,6 +1,8 @@
 <?php
 
-class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+require 'Core/Application/Bootstrap/Abstract.php';
+
+class Bootstrap extends Core_Application_Bootstrap_Abstract
 {	
     
 	const MULTIDB_REGISTRY_KEY = 'multidb';
