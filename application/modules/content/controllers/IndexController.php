@@ -144,4 +144,37 @@ class Content_IndexController extends Sunny_Controller_Action
 		
 		
 	}
+	
+	public function dynamicItemAction()
+	{
+		$request = $this->getRequest();
+		$params = $request->getParams();
+		$path = explode('/', $params['path']);
+		
+// 		echo '<pre>';
+// 		var_export($params);
+// 		echo '</pre>';
+		
+		$mapper = new Content_Model_Mapper_Cmscontent();
+		
+		$where = array(
+				"id = ?" => $params['id'],
+				"published = 1"
+		);
+		
+		$item = $mapper->fetchRow($where);
+		
+// 		echo '<pre>';
+// 		var_export($item);
+// 		echo '</pre>';
+		
+ 		$this->view->path = $params['path'];
+ 		$this->view->item = $item;
+				
+ 		$alternate = $this->makeRender($params) . '/' . $path[0] . '-item.php3';
+ 		
+ 		if (is_file($alternate)) {
+ 			$this->render($path[0] . '-item');
+ 		}
+	}
 }

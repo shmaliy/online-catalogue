@@ -148,6 +148,24 @@ class Bootstrap extends Core_Application_Bootstrap_Abstract
 	    ));
 	    
 	    $router->addRoute(
+	    		'dynamic_item',
+	    		new Zend_Controller_Router_Route_Regex(
+    				'([a-zA-Z\/]+)/([0-9]+)',
+    				array(
+    						'module' => 'content',
+    						'controller' => 'index',
+    						'action' => 'dynamic-item',
+    						'path' => '',
+    						'id' => '',
+    				),
+    				array(
+    						1 => 'path',
+    						2 => 'id'
+    				),
+    				'%s/%s'
+	    ));
+	    
+	    $router->addRoute(
 	    		'cat_static', 
 	    		new Zend_Controller_Router_Route_Regex(
 	    			'([a-zA-Z0-9\/]*)/([a-zA-Z0-9]*).html',
