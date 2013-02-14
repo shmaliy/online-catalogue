@@ -18,6 +18,8 @@ class Core_View_Helper_Content extends Core_View_Helper_Abstract
 			$crender = $render . '.php3';
 		}
 		
+// 		echo $curId;
+		
 		$cMapper = new Content_Model_Mapper_Cmscategories();
 		$subs = $cMapper->fetchAll(
 			array(

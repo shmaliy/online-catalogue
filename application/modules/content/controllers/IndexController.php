@@ -137,6 +137,7 @@ class Content_IndexController extends Sunny_Controller_Action
 		
 		
 		$alternate = $this->makeRender($params) . '/' . $path[0] . '.php3';
+// 		echo $alternate;
 		
 		if (is_file($alternate)) {
 			$this->render($path[0]);
