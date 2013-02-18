@@ -21,6 +21,7 @@ class Bootstrap extends Core_Application_Bootstrap_Abstract
             $front->setRouter($router);            
             //$front->registerPlugin(new Ext_Controller_Plugin_ModuleBootstrap, 1);
             Zend_Registry::set('interface', $this->_options['interface']);
+            $this->_setNavigation();
             
         } catch (Exception $e) {
         	echo $e->getMessage();
@@ -29,10 +30,21 @@ class Bootstrap extends Core_Application_Bootstrap_Abstract
     	parent::run();
     }
     
-   public function setPlugins()
+	public function _setNavigation()
+	{
+		
+		
+		$mapper = new Menu_Model_Mapper_Cmsmenu();
+		$mapper->mainMenu('mainmenu');
+	}
+	
+	public function setPlugins()
 	{
 		$front = Zend_Controller_Front::getInstance();
         $front->registerPlugin(new Custom_Controller_Plugin_IEStopper(array('ieversion' => 7)));
+        
+        $navigation = new Core_Controller_Plugin_Nav(/*$this->getOption('sunny_controller_plugin_auth')*/);
+        $front->registerPlugin($navigation);
             
 	}
 	

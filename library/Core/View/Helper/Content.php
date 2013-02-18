@@ -127,4 +127,13 @@ class Core_View_Helper_Content extends Core_View_Helper_Abstract
 		
 		return $this->view->render('last-news.php3');
 	}
+	
+	public function breadCumps()
+	{
+		$this->view->container = Zend_Registry::get('nav_container');
+// 		echo '<pre>';
+// 		print_r($this->view->container);
+// 		echo '</pre>';
+		return $this->view->render('breadcumps.php3');
+	}
 }

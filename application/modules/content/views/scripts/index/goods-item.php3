@@ -1,5 +1,6 @@
 <div class="goods-item-container">
 	<h1><?php echo $this->item->title; ?></h1>
+		
 	<div class="goods-item-container-image">
 		<?php echo $this->image(ltrim($this->item->image, '/'))->resizeToWidth(200); ?>
 	</div>

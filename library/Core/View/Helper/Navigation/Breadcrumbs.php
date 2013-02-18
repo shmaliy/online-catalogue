@@ -15,6 +15,6 @@ class Core_View_Helper_Navigation_Breadcrumbs
             $this->setContainer($container);
         }
 
-        //return $this;
+        return $this;
     }
 }

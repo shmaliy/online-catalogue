@@ -31,15 +31,36 @@ class Menu_IndexController extends Sunny_Controller_Action
 		return $items;
 	}
 	
+	
+	
+	
+	
     public function indexAction()
     {
     	$request = $this->getRequest();
     	$params = $request->getParams();
+    	
+    	$where = array();
+    	$where[] = 'published = 1';
+    	$mapper = new Menu_Model_Mapper_Cmsmenu();
+    	$items = $mapper->fetchAll(
+    			$where,
+    			'ordering'
+    	);
+    	
+    	foreach ($items as $item) {
+    		$page[] = array(
+    				'label'   => $item->title,
+    				'uri' 	  => $item->link
+    		);
+    	}
+    	
+    	$container = new Zend_Navigation($page);
        
 //     	echo '<pre>';
-// 		var_export($this->makeMenuTree(0, 'mainmenu'));
+// 		var_export($page);
 // 		echo '</pre>';
-		
+		$this->view->container = $container;
 		$this->view->tree = $this->makeMenuTree(0, 'mainmenu');
 	}   
 }

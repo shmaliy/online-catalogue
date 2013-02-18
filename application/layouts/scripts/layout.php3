@@ -41,6 +41,12 @@ var parser = new(less.Parser)({
 </div>
 <div class="body">
 	<div class="push1"></div>
+		<div>
+			<?php
+	        echo $this->navigation(Zend_Registry::get('NAVIGATION'))
+	           	      ->breadcrumbs()->render();
+  			?>
+		</div>
 		<?php echo $this->layout()->content;?>
     <div class="push2"></div>    
 </div>

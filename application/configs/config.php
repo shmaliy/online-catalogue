@@ -45,6 +45,30 @@ $config = array(
             )
         ),   
     */
+		
+	'navigation' => array(
+			'default' => array(
+					array(
+							'label' => 'Home',
+							'route' => 'home',
+					),
+					array(
+							'label' => 'Page #1',
+							'route' => 'page-1',
+							'pages' => array(
+									array(
+											'label' => 'Child #1',
+											'route' => 'page-1-child'
+									)
+							)
+					),
+					array(
+							'label' => 'Page #2',
+							'route' => 'page-2',
+					)
+			)
+	),
+		
 	'interface' => $interface,
     'phpSettings' => array(
             'display_startup_errors' => 1,
