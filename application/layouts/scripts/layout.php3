@@ -44,7 +44,7 @@ var parser = new(less.Parser)({
 		<div>
 			<?php
 	        echo $this->navigation(Zend_Registry::get('NAVIGATION'))
-	           	      ->breadcrumbs()->render();
+	           	      ->breadcrumbs()->setMinDepth(1)->render();
   			?>
 		</div>
 		<?php echo $this->layout()->content;?>

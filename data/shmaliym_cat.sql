@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.2.3
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Фев 15 2013 г., 00:21
--- Версия сервера: 5.5.25
--- Версия PHP: 5.3.13
+-- Host: localhost
+-- Generation Time: Feb 19, 2013 at 10:56 AM
+-- Server version: 5.1.40
+-- PHP Version: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,13 +16,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `shmaliym_cat`
+-- Database: `shmaliym_cat`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cache`
+-- Table structure for table `cache`
 --
 
 DROP TABLE IF EXISTS `cache`;
@@ -36,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `cache` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `cache`
+-- Dumping data for table `cache`
 --
 
 INSERT INTO `cache` (`id`, `alias`, `content`, `created`) VALUES
@@ -45,7 +44,7 @@ INSERT INTO `cache` (`id`, `alias`, `content`, `created`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cmscategories`
+-- Table structure for table `cmscategories`
 --
 
 DROP TABLE IF EXISTS `cmscategories`;
@@ -85,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `cmscategories` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=15 ;
 
 --
--- Дамп данных таблицы `cmscategories`
+-- Dumping data for table `cmscategories`
 --
 
 INSERT INTO `cmscategories` (`id`, `parent_id`, `title`, `title_alias`, `description`, `published`, `checked_out`, `checked_out_time`, `ordering`, `image`, `images`, `param1`, `param2`, `param3`, `param4`, `param5`, `param6`, `param7`, `param8`, `param9`, `param10`, `param11`, `param12`, `param13`, `param14`, `param15`, `param16`, `param17`, `param18`, `param19`, `param20`) VALUES
@@ -107,7 +106,7 @@ INSERT INTO `cmscategories` (`id`, `parent_id`, `title`, `title_alias`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cmscontent`
+-- Table structure for table `cmscontent`
 --
 
 DROP TABLE IF EXISTS `cmscontent`;
@@ -153,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `cmscontent` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
--- Дамп данных таблицы `cmscontent`
+-- Dumping data for table `cmscontent`
 --
 
 INSERT INTO `cmscontent` (`id`, `parent_id`, `title`, `title_alias`, `introtext`, `fulltext`, `created`, `created_by`, `published`, `publish_up`, `publish_down`, `checked_out`, `checked_out_time`, `ordering`, `image`, `images`, `hits`, `param1`, `param2`, `param3`, `param4`, `param5`, `param6`, `param7`, `param8`, `param9`, `param10`, `param11`, `param12`, `param13`, `param14`, `param15`, `param16`, `param17`, `param18`, `param19`, `param20`) VALUES
@@ -189,7 +188,7 @@ INSERT INTO `cmscontent` (`id`, `parent_id`, `title`, `title_alias`, `introtext`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cmsmenu`
+-- Table structure for table `cmsmenu`
 --
 
 DROP TABLE IF EXISTS `cmsmenu`;
@@ -209,11 +208,11 @@ CREATE TABLE IF NOT EXISTS `cmsmenu` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `cmsmenu`
+-- Dumping data for table `cmsmenu`
 --
 
 INSERT INTO `cmsmenu` (`id`, `parent_id`, `title`, `title_alias`, `link`, `published`, `ordering`, `checked_out`, `checked_out_time`, `browser_nav`, `image`) VALUES
-(1, 0, 'Главное меню', 'mainmenu', '', 1, 1, 0, '0000-00-00 00:00:00', '0', ''),
+(1, 0, 'Главная страница', 'mainmenu', '/', 1, 1, 0, '0000-00-00 00:00:00', '0', ''),
 (2, 1, 'О нас', '', '/about/about.html', 1, 2, 0, '0000-00-00 00:00:00', '0', ''),
 (3, 2, 'История', '', '/about/history.html', 1, 1, 0, '0000-00-00 00:00:00', '0', ''),
 (4, 2, 'Сотрудники', '', '/about/employees', 1, 2, 0, '0000-00-00 00:00:00', '0', ''),
@@ -222,12 +221,12 @@ INSERT INTO `cmsmenu` (`id`, `parent_id`, `title`, `title_alias`, `link`, `publi
 (7, 1, 'Услуги', '', '/services', 1, 4, 0, '0000-00-00 00:00:00', '0', ''),
 (8, 1, 'Товары', '', '/goods', 1, 5, 0, '0000-00-00 00:00:00', '0', ''),
 (9, 1, 'Контакты', '', '/contacts.html', 1, 6, 0, '0000-00-00 00:00:00', '0', ''),
-(10, 1, 'Главная', '', '/', 1, 1, 0, '0000-00-00 00:00:00', '0', '');
+(10, 1, 'Главная', '', '/', 0, 1, 0, '0000-00-00 00:00:00', '0', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cmsparams`
+-- Table structure for table `cmsparams`
 --
 
 DROP TABLE IF EXISTS `cmsparams`;
@@ -244,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `cmsparams` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=61 ;
 
 --
--- Дамп данных таблицы `cmsparams`
+-- Dumping data for table `cmsparams`
 --
 
 INSERT INTO `cmsparams` (`id`, `ref_number`, `ref_module`, `ref_title`, `ref_type`, `ref_src`, `ref_srcv`, `ref_in_list`) VALUES
@@ -312,7 +311,7 @@ INSERT INTO `cmsparams` (`id`, `ref_number`, `ref_module`, `ref_title`, `ref_typ
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cmssession`
+-- Table structure for table `cmssession`
 --
 
 DROP TABLE IF EXISTS `cmssession`;
@@ -323,17 +322,17 @@ CREATE TABLE IF NOT EXISTS `cmssession` (
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
--- Дамп данных таблицы `cmssession`
+-- Dumping data for table `cmssession`
 --
 
 INSERT INTO `cmssession` (`user_id`, `session_id`) VALUES
-(1, 'sd8e197hmnaof57dc043ve3uk4'),
+(1, '7140bc12b7ce67cf7a6d4b4ed3bc9f98'),
 (2, '33249b1c3b44625500a767fba61349dd');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cmsusers`
+-- Table structure for table `cmsusers`
 --
 
 DROP TABLE IF EXISTS `cmsusers`;
@@ -374,17 +373,17 @@ CREATE TABLE IF NOT EXISTS `cmsusers` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `cmsusers`
+-- Dumping data for table `cmsusers`
 --
 
 INSERT INTO `cmsusers` (`id`, `checked_out`, `checked_out_time`, `name`, `login`, `email`, `password`, `usertype`, `block`, `register_date`, `lastvizit_date`, `image`, `param1`, `param2`, `param3`, `param4`, `param5`, `param6`, `param7`, `param8`, `param9`, `param10`, `param11`, `param12`, `param13`, `param14`, `param15`, `param16`, `param17`, `param18`, `param19`, `param20`) VALUES
-(1, 0, '0000-00-00 00:00:00', '', 'admin', 'shmaliy.maxim@gmail.com', 'ce892fcaa9ba4c0a1840414c7314c138', 10, 0, '2011-02-16 11:08:09', '2013-02-14 21:39:08', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(1, 0, '0000-00-00 00:00:00', '', 'admin', 'shmaliy.maxim@gmail.com', 'ce892fcaa9ba4c0a1840414c7314c138', 10, 0, '2011-02-16 11:08:09', '2013-02-19 09:54:12', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (2, 0, '0000-00-00 00:00:00', 'manager', 'manager', '1@1.com', '97db1846570837fce6ff62a408f1c26a', 10, 0, '2012-11-02 11:17:26', '2012-11-07 10:11:39', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `indexation`
+-- Table structure for table `indexation`
 --
 
 DROP TABLE IF EXISTS `indexation`;
@@ -401,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `indexation` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=16 ;
 
 --
--- Дамп данных таблицы `indexation`
+-- Dumping data for table `indexation`
 --
 
 INSERT INTO `indexation` (`id`, `url`, `title`, `title_hash`, `text`, `prepared_text`, `text_hash`, `created`) VALUES
@@ -426,7 +425,7 @@ INSERT INTO `indexation` (`id`, `url`, `title`, `title_hash`, `text`, `prepared_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `regions_gorod`
+-- Table structure for table `regions_gorod`
 --
 
 DROP TABLE IF EXISTS `regions_gorod`;
@@ -440,7 +439,7 @@ CREATE TABLE IF NOT EXISTS `regions_gorod` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=407 ;
 
 --
--- Дамп данных таблицы `regions_gorod`
+-- Dumping data for table `regions_gorod`
 --
 
 INSERT INTO `regions_gorod` (`id`, `obl_id`, `title`, `latitude`, `longitude`) VALUES
@@ -854,7 +853,7 @@ INSERT INTO `regions_gorod` (`id`, `obl_id`, `title`, `latitude`, `longitude`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `regions_obl`
+-- Table structure for table `regions_obl`
 --
 
 DROP TABLE IF EXISTS `regions_obl`;
@@ -865,7 +864,7 @@ CREATE TABLE IF NOT EXISTS `regions_obl` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=51 ;
 
 --
--- Дамп данных таблицы `regions_obl`
+-- Dumping data for table `regions_obl`
 --
 
 INSERT INTO `regions_obl` (`id`, `title`) VALUES
@@ -898,7 +897,7 @@ INSERT INTO `regions_obl` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `subscription`
+-- Table structure for table `subscription`
 --
 
 DROP TABLE IF EXISTS `subscription`;
@@ -911,7 +910,7 @@ CREATE TABLE IF NOT EXISTS `subscription` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `subscription`
+-- Dumping data for table `subscription`
 --
 
 INSERT INTO `subscription` (`id`, `name`, `mail`, `phone`) VALUES
@@ -920,7 +919,7 @@ INSERT INTO `subscription` (`id`, `name`, `mail`, `phone`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tags`
+-- Table structure for table `tags`
 --
 
 DROP TABLE IF EXISTS `tags`;
@@ -931,7 +930,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `tags`
+-- Dumping data for table `tags`
 --
 
 INSERT INTO `tags` (`id`, `tag`) VALUES
@@ -944,7 +943,3 @@ INSERT INTO `tags` (`id`, `tag`) VALUES
 (7, 'проститутки'),
 (8, 'измена'),
 (9, 'минет');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

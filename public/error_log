@@ -4,3 +4,14 @@
 [13-Feb-2013 09:33:44] PHP Fatal error:  Call to a member function test() on a non-object in W:\home\zend\Sunny\Controller\Action.php on line 115
 [13-Feb-2013 09:37:27] PHP Fatal error:  Call to a member function test() on a non-object in W:\home\zf\Sunny\Controller\Action.php on line 115
 [13-Feb-2013 09:38:07] PHP Fatal error:  Call to a member function test() on a non-object in W:\home\zf\Sunny\Controller\Action.php on line 132
+[19-Feb-2013 09:46:48] PHP Fatal error:  Uncaught exception 'Zend_Navigation_Exception' with message 'Bad method call: Unknown method Zend_Navigation::menubreadcrumps' in W:\home\zf\Zend\Navigation\Container.php:366
+Stack trace:
+#0 [internal function]: Zend_Navigation_Container->__call('menubreadcrumps', Array)
+#1 [internal function]: Zend_Navigation->menubreadcrumps()
+#2 W:\home\zf\Zend\View\Helper\Navigation\HelperAbstract.php(503): call_user_func_array(Array, Array)
+#3 W:\home\zf\Zend\View\Helper\Navigation.php(132): Zend_View_Helper_Navigation_HelperAbstract->__call('menubreadcrumps', Array)
+#4 W:\home\online-catalogue\application\layouts\scripts\layout.php3(47): Zend_View_Helper_Navigation->__call('menubreadcrumps', Array)
+#5 W:\home\online-catalogue\application\layouts\scripts\layout.php3(47): Zend_View_Helper_Navigation->menubreadcrumps()
+#6 W:\home\zf\Zend\View.php(108): include('W:\home\online-...')
+#7 W:\home\zf\Zend\View\Abstract.php(888): Zend_View->_run('W:\home\online-...')
+#8 W:\home\zf\Zend\Layout.php(796): Zend_View_Abstract->render in W:\home\zf\Zend\Controller\Plugin\Broker.php on line 336
