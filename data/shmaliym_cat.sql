@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.3
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Feb 19, 2013 at 10:56 AM
--- Server version: 5.1.40
--- PHP Version: 5.3.3
+-- Хост: 127.0.0.1
+-- Время создания: Фев 20 2013 г., 00:47
+-- Версия сервера: 5.5.25
+-- Версия PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,13 +17,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `shmaliym_cat`
+-- База данных: `shmaliym_cat`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cache`
+-- Структура таблицы `cache`
 --
 
 DROP TABLE IF EXISTS `cache`;
@@ -35,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `cache` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `cache`
+-- Дамп данных таблицы `cache`
 --
 
 INSERT INTO `cache` (`id`, `alias`, `content`, `created`) VALUES
@@ -44,7 +45,7 @@ INSERT INTO `cache` (`id`, `alias`, `content`, `created`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmscategories`
+-- Структура таблицы `cmscategories`
 --
 
 DROP TABLE IF EXISTS `cmscategories`;
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `cmscategories` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `cmscategories`
+-- Дамп данных таблицы `cmscategories`
 --
 
 INSERT INTO `cmscategories` (`id`, `parent_id`, `title`, `title_alias`, `description`, `published`, `checked_out`, `checked_out_time`, `ordering`, `image`, `images`, `param1`, `param2`, `param3`, `param4`, `param5`, `param6`, `param7`, `param8`, `param9`, `param10`, `param11`, `param12`, `param13`, `param14`, `param15`, `param16`, `param17`, `param18`, `param19`, `param20`) VALUES
@@ -106,7 +107,7 @@ INSERT INTO `cmscategories` (`id`, `parent_id`, `title`, `title_alias`, `descrip
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmscontent`
+-- Структура таблицы `cmscontent`
 --
 
 DROP TABLE IF EXISTS `cmscontent`;
@@ -149,10 +150,10 @@ CREATE TABLE IF NOT EXISTS `cmscontent` (
   `param19` text CHARACTER SET cp1251 NOT NULL,
   `param20` text CHARACTER SET cp1251 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
--- Dumping data for table `cmscontent`
+-- Дамп данных таблицы `cmscontent`
 --
 
 INSERT INTO `cmscontent` (`id`, `parent_id`, `title`, `title_alias`, `introtext`, `fulltext`, `created`, `created_by`, `published`, `publish_up`, `publish_down`, `checked_out`, `checked_out_time`, `ordering`, `image`, `images`, `hits`, `param1`, `param2`, `param3`, `param4`, `param5`, `param6`, `param7`, `param8`, `param9`, `param10`, `param11`, `param12`, `param13`, `param14`, `param15`, `param16`, `param17`, `param18`, `param19`, `param20`) VALUES
@@ -183,12 +184,14 @@ INSERT INTO `cmscontent` (`id`, `parent_id`, `title`, `title_alias`, `introtext`
 (41, '11', 'MMS', '', 'Передавайте по&nbsp;телефону свое настроение и&nbsp;чувства! В&nbsp;этом вам поможет услуга мультимедийных сообщений MMS.', '<div>\n<p>Передавайте по&nbsp;телефону свое настроение и&nbsp;чувства! В&nbsp;этом вам поможет услуга мультимедийных сообщений MMS.</p>\n<p>MMS&nbsp;&mdash; новый уровень вашей свободы! Услуга дает возможность отправлять  и&nbsp;получать: фотографии, изображения, мелодии, видеоролики, текстовые  сообщения большого размера.</p>\n</div>', 1360878150, 0, 1, 1360878150, 943912800, 0, '0000-00-00 00:00:00', 1, '/contents/services/mms.png', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (42, '14', 'Мобильный телефон ZTE V970', '', 'Экран 4.3" (540x960) сенсорный IPS / моноблок / процессор NVIDIA Tegra  2, Dual Core 1 ГГц / камера 5 Мп + фронтальная 0.3 Мп / Bluetooth /  Wi-Fi 802.11 / ОЗУ 512 МБ / ПЗУ 4 ГБ + поддержка microSD / разъем 3.5 мм  / GPS / 3G / ОС Android 4.0 / 125х66х9.9 мм, вес 140 г / черный 			<span id="copyinfo"><br />Подробнее: <a href="http://rozetka.com.ua/zte_v970/p243669/">http://rozetka.com.ua/zte_v970/p243669/</a></span>', '', 1360879317, 0, 1, 1360879317, 943912800, 0, '0000-00-00 00:00:00', 3, '/contents/goods/zte_v970_7380856.jpg', '', 0, '243669', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (43, '14', 'HTC Sensation XL x315e UACRF', '', 'Экран 4.7" (480x800, сенсорный) Super-LCD / моноблок / процессор 1.5 ГГц  / камера 8 Мп + фронтальная 1.3 Мп / Bluetooth / Wi-Fi 802.11b/g/n /  RAM 768 МБ / 16 ГБ встроенной памяти / разъем 3.5 мм / 3G / GPS / ОС  Android 2.3.4 (Gingerbread) / 132.5x70.7x9.9 мм, 162.5 г 			<span id="copyinfo"><br />Подробнее: <a href="http://rozetka.com.ua/htc_sensation_xl/p169787/">http://rozetka.com.ua/htc_sensation_xl/p169787/</a></span>', '', 1360879449, 0, 1, 1360879449, 943912800, 0, '0000-00-00 00:00:00', 2, '/contents/goods/htc_sensation_xl_5471936.jpg', '', 0, '169787', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(44, '14', 'Samsung Galaxy Note II N7100 Ceramic White', '', 'Экран 5.55" (1280x720) Full touch + S Pen / моноблок /  четырехъядерный  процессор (1.6 ГГц) / основная камера 8 Мп, фронтальная - 1.9 Мп /  Bluetooth 4.0 / Wi-Fi 802.11b/g/n / SSD 16 ГБ + поддержка карт памяти  microSD / разъем 3.5 мм / 3G / GPS / ОС Android 4.1 (Jelly Bean) / 151.1  x 80.5 x 9.4 мм, вес 182.5 г / белый 			<span id="copyinfo"><br />Подробнее: <a href="http://rozetka.com.ua/samsung_galaxy_note_N7100_ceramic_white/p237343/">http://rozetka.com.ua/samsung_galaxy_note_N7100_ceramic_white/p237343/</a></span>', '', 1360879556, 0, 1, 1360879556, 943912800, 0, '0000-00-00 00:00:00', 1, '/contents/goods/samsung_galaxy_note_N7100_ceramic_white_7365545.jpg', '', 0, '237343', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(44, '14', 'Samsung Galaxy Note II N7100 Ceramic White', '', 'Экран 5.55" (1280x720) Full touch + S Pen / моноблок /  четырехъядерный  процессор (1.6 ГГц) / основная камера 8 Мп, фронтальная - 1.9 Мп /  Bluetooth 4.0 / Wi-Fi 802.11b/g/n / SSD 16 ГБ + поддержка карт памяти  microSD / разъем 3.5 мм / 3G / GPS / ОС Android 4.1 (Jelly Bean) / 151.1  x 80.5 x 9.4 мм, вес 182.5 г / белый 			<span id="copyinfo"><br />Подробнее: <a href="http://rozetka.com.ua/samsung_galaxy_note_N7100_ceramic_white/p237343/">http://rozetka.com.ua/samsung_galaxy_note_N7100_ceramic_white/p237343/</a></span>', '', 1360879556, 0, 1, 1360879556, 943912800, 0, '0000-00-00 00:00:00', 1, '/contents/goods/samsung_galaxy_note_N7100_ceramic_white_7365545.jpg', '', 0, '237343', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(45, '8', 'Fus Ro Click', '', 'Я старый юзер, я не знаю слов ненависти. Я сама решаю все свои банальные  юзерские проблемы. Поставить, снести, настроить &mdash; говно, пардон,  вопрос. Но тут тако-ое&hellip;', 'Я старый юзер, я не знаю слов ненависти. Я сама решаю все свои банальные  юзерские проблемы. Поставить, снести, настроить &mdash; говно, пардон,  вопрос. Но тут тако-ое&hellip;<br /><br />Удалось наконец-то выкроить время,  метнуться до магазина барсиком и добыть вожделенную игру. Да, вышедшую  год назад. Но какую! &laquo;Беседка&raquo; не могла разочаровать, нет. Установка,  установка дополнительного парового двигателя, недолгий бой с паровым  двигателем, загрузка обновлений, запуск игры&hellip;<br /><br />Красота &mdash; смотреть  больно. Неописуемая. Горы, снег, ёлки, волки, драконы. Все идеально, вот  ровно как и должно быть. Но простите, где же моя прекрасная музыка?  Тихие голоса неписей доносятся откуда-то, но едва различимо. Настройки  громкости, смена наушников, ещё раз настройки, переключение на колонки&hellip;  Да в чём подвох-то? Звук доносится совсем не оттуда, но где-то он есть!  Только тихий очень.<br /><br />Старого юзера подвела мышка. Да-да, звук шёл  именно из неё. Из её спинки. Дослушав важный монолог непися с  приложенной к уху мышкой, старый юзер засейвилась, ухмыльнулась и  разобралась-таки в загадочных настройках. Но кому и зачем понадобилось  изобретать столь странный девайс и каким образом его экстраординарные  свойства оказались в приоритете у &laquo;Беседки&raquo;, до сих пор остаётся  загадкой.', 1360708882, 0, 1, 1360708882, 943912800, 0, '0000-00-00 00:00:00', 2, '/contents/news/sudoku-random-criss-crossed-lines-ron-brown.jpg', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(46, '8', 'У вас спина белая и стекло битое', '', '<a href="http://ithappens.ru/story/10550">Первое апреля</a>? А я несколько лет назад стал невольным свидетелем более интересной первоапрельской шутки.', '<a href="http://ithappens.ru/story/10550">Первое апреля</a>? А я несколько лет назад стал невольным свидетелем более интересной первоапрельской шутки.<br /><br />Одно  время в &laquo;Макдональдсе&raquo; в состав &laquo;Хэппи-мила&raquo; входила игрушка, издающая  звук бьющегося стекла, но тихий. А вот если к ней подключить динамик  меньшего сопротивления и большего диаметра, звук становился гораздо  громче, отчётливее и правдоподобнее.<br /><br />Так один шутник и сделал.  Зашёл в электричку, сделал вид, что с силой ударил по стеклу кулаком, и  одновременно врубил свой имитатор звука бьющегося стекла. Окружающие  (стражей порядка, контролёров и охранников среди них не было) с  удивлением рассматривали абсолютно целое стекло. А потом хохмач  поздравил пассажиров с Днём смеха и показал свою &laquo;звенелку&raquo;. Настроение у  всех сразу поднялось.', 1360708748, 0, 1, 1360708748, 943912800, 0, '0000-00-00 00:00:00', 1, '/contents/news/url.jpg', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmsmenu`
+-- Структура таблицы `cmsmenu`
 --
 
 DROP TABLE IF EXISTS `cmsmenu`;
@@ -208,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `cmsmenu` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `cmsmenu`
+-- Дамп данных таблицы `cmsmenu`
 --
 
 INSERT INTO `cmsmenu` (`id`, `parent_id`, `title`, `title_alias`, `link`, `published`, `ordering`, `checked_out`, `checked_out_time`, `browser_nav`, `image`) VALUES
@@ -226,7 +229,7 @@ INSERT INTO `cmsmenu` (`id`, `parent_id`, `title`, `title_alias`, `link`, `publi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmsparams`
+-- Структура таблицы `cmsparams`
 --
 
 DROP TABLE IF EXISTS `cmsparams`;
@@ -243,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `cmsparams` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=61 ;
 
 --
--- Dumping data for table `cmsparams`
+-- Дамп данных таблицы `cmsparams`
 --
 
 INSERT INTO `cmsparams` (`id`, `ref_number`, `ref_module`, `ref_title`, `ref_type`, `ref_src`, `ref_srcv`, `ref_in_list`) VALUES
@@ -311,7 +314,7 @@ INSERT INTO `cmsparams` (`id`, `ref_number`, `ref_module`, `ref_title`, `ref_typ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmssession`
+-- Структура таблицы `cmssession`
 --
 
 DROP TABLE IF EXISTS `cmssession`;
@@ -322,17 +325,17 @@ CREATE TABLE IF NOT EXISTS `cmssession` (
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
--- Dumping data for table `cmssession`
+-- Дамп данных таблицы `cmssession`
 --
 
 INSERT INTO `cmssession` (`user_id`, `session_id`) VALUES
-(1, '7140bc12b7ce67cf7a6d4b4ed3bc9f98'),
+(1, 'i0su2c8o1pbgjg0obhkjfngch7'),
 (2, '33249b1c3b44625500a767fba61349dd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmsusers`
+-- Структура таблицы `cmsusers`
 --
 
 DROP TABLE IF EXISTS `cmsusers`;
@@ -373,17 +376,17 @@ CREATE TABLE IF NOT EXISTS `cmsusers` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `cmsusers`
+-- Дамп данных таблицы `cmsusers`
 --
 
 INSERT INTO `cmsusers` (`id`, `checked_out`, `checked_out_time`, `name`, `login`, `email`, `password`, `usertype`, `block`, `register_date`, `lastvizit_date`, `image`, `param1`, `param2`, `param3`, `param4`, `param5`, `param6`, `param7`, `param8`, `param9`, `param10`, `param11`, `param12`, `param13`, `param14`, `param15`, `param16`, `param17`, `param18`, `param19`, `param20`) VALUES
-(1, 0, '0000-00-00 00:00:00', '', 'admin', 'shmaliy.maxim@gmail.com', 'ce892fcaa9ba4c0a1840414c7314c138', 10, 0, '2011-02-16 11:08:09', '2013-02-19 09:54:12', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(1, 0, '0000-00-00 00:00:00', '', 'admin', 'shmaliy.maxim@gmail.com', 'ce892fcaa9ba4c0a1840414c7314c138', 10, 0, '2011-02-16 11:08:09', '2013-02-19 23:30:55', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (2, 0, '0000-00-00 00:00:00', 'manager', 'manager', '1@1.com', '97db1846570837fce6ff62a408f1c26a', 10, 0, '2012-11-02 11:17:26', '2012-11-07 10:11:39', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `indexation`
+-- Структура таблицы `indexation`
 --
 
 DROP TABLE IF EXISTS `indexation`;
@@ -400,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `indexation` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=16 ;
 
 --
--- Dumping data for table `indexation`
+-- Дамп данных таблицы `indexation`
 --
 
 INSERT INTO `indexation` (`id`, `url`, `title`, `title_hash`, `text`, `prepared_text`, `text_hash`, `created`) VALUES
@@ -425,7 +428,7 @@ INSERT INTO `indexation` (`id`, `url`, `title`, `title_hash`, `text`, `prepared_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `regions_gorod`
+-- Структура таблицы `regions_gorod`
 --
 
 DROP TABLE IF EXISTS `regions_gorod`;
@@ -439,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `regions_gorod` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=407 ;
 
 --
--- Dumping data for table `regions_gorod`
+-- Дамп данных таблицы `regions_gorod`
 --
 
 INSERT INTO `regions_gorod` (`id`, `obl_id`, `title`, `latitude`, `longitude`) VALUES
@@ -853,7 +856,7 @@ INSERT INTO `regions_gorod` (`id`, `obl_id`, `title`, `latitude`, `longitude`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `regions_obl`
+-- Структура таблицы `regions_obl`
 --
 
 DROP TABLE IF EXISTS `regions_obl`;
@@ -864,7 +867,7 @@ CREATE TABLE IF NOT EXISTS `regions_obl` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=51 ;
 
 --
--- Dumping data for table `regions_obl`
+-- Дамп данных таблицы `regions_obl`
 --
 
 INSERT INTO `regions_obl` (`id`, `title`) VALUES
@@ -897,7 +900,7 @@ INSERT INTO `regions_obl` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subscription`
+-- Структура таблицы `subscription`
 --
 
 DROP TABLE IF EXISTS `subscription`;
@@ -910,7 +913,7 @@ CREATE TABLE IF NOT EXISTS `subscription` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `subscription`
+-- Дамп данных таблицы `subscription`
 --
 
 INSERT INTO `subscription` (`id`, `name`, `mail`, `phone`) VALUES
@@ -919,7 +922,7 @@ INSERT INTO `subscription` (`id`, `name`, `mail`, `phone`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Структура таблицы `tags`
 --
 
 DROP TABLE IF EXISTS `tags`;
@@ -930,7 +933,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `tags`
+-- Дамп данных таблицы `tags`
 --
 
 INSERT INTO `tags` (`id`, `tag`) VALUES
@@ -943,3 +946,7 @@ INSERT INTO `tags` (`id`, `tag`) VALUES
 (7, 'проститутки'),
 (8, 'измена'),
 (9, 'минет');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
