@@ -41,13 +41,18 @@ var parser = new(less.Parser)({
 </div>
 <div class="body">
 	<div class="push1"></div>
-		<div>
-			<?php
+	<?php //echo $this->Seo();?>
+	<?php if ($_SERVER['REQUEST_URI'] != '/' && $_SERVER['REQUEST_URI'] != '') : ?>
+	<div class="breadcrumbs">
+		<?php
 	        echo $this->navigation(Zend_Registry::get('NAVIGATION'))
-	           	      ->breadcrumbs()->setMinDepth(1)->render();
+	           	      ->breadcrumbs()->setMinDepth(1)->setSeparator(' &rarr;' . PHP_EOL);
   			?>
-		</div>
-		<?php echo $this->layout()->content;?>
+	</div>
+	<?php endif; ?>
+	
+	<?php echo $this->layout()->content;?>
+		
     <div class="push2"></div>    
 </div>
 <div class="footer">
@@ -55,5 +60,12 @@ var parser = new(less.Parser)({
 		
 	</div>
 </div>
+
+<script>
+$(document).ready(function () {
+	$('li > a.hidden').parent().css('display', 'none');
+});
+</script>
+
 </body>
 </html>

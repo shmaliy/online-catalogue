@@ -5,47 +5,59 @@ class Menu_Model_Mapper_Cmsmenu extends Sunny_DataMapper_MapperAbstract
 	
 	public function makeNavContainer($array, $alias = null, $parent = 0, $level = 0)
 	{
-// 		if ($parent == 0) {
-// 			foreach ($array as $item) {
-// 				if ($item['title_alias'] == $alias) {
-// 					$parent = $item['id'];
-// 					break;
-// 				}
-// 			}
-// 		}
+		
+		$catsMapper = new Content_Model_Mapper_Cmscategories();
+		$contMapper = new Content_Model_Mapper_Cmscontent();
 		
 		$_tree = array();
 		$level++;
 		
 		$current = $_SERVER['REQUEST_URI'];
 		
-		
-		foreach ($array as $item) {
+		foreach ($array as &$item) {
 			if ($item['parent_id'] == $parent) {
 				
+				$link = trim($item['link'], '/');
+				
+
 				$pages = $this->makeNavContainer($array, null, $item['id'], $level);
+				
+				if (!strstr($link, '.html') && !preg_match('[0-9]+', $link) && $link != '')
+				{
+					
+					$rcontents = $contMapper->getContentList($item['link']);
+					
+						
+					if (!empty($rcontents)) {
+						foreach ($rcontents as $ritem) {
+							array_push($pages, $ritem);
+						}
+					}
+					
+					$cats = $catsMapper->makeCatsTree($link);
+					if (!empty($cats)) {
+						foreach ($cats as &$cat) {
+							
+							$contents = $contMapper->getContentList($cat['uri']);
+							
+							if (!empty($contents)) {
+								$cat['pages'] = $contents;
+							}
+							
+							array_push($pages, $cat);
+						}
+					}
+				}
+				
 				$class='mainmenu_' . $level;
 				
-							
-				if (!empty($pages)) {
-					$_tree[] = array(
+				$_tree[] = array(
 						'label'   	=> $item['title'],
 						'uri' 	  	=> $item['link'],
 						'class'		=> $class,
 						'pages'		=> $pages,
 						'active'	=> $_SERVER['REQUEST_URI'] == $item['link']
-					);
-				} else {
-					$_tree[] = array(
-						'label'   	=> $item['title'],
-						'uri' 	  	=> $item['link'],
-						'class'		=> $class,
-						'active'	=> $_SERVER['REQUEST_URI'] == $item['link']
-							
-					);
-				}
-				
-				
+				);
 			}
 		}
 		
